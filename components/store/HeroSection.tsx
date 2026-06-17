@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+const EASE: [number, number, number, number] = [0.25, 0.4, 0.25, 1]
+
 export function HeroSection() {
   return (
     <section
@@ -48,7 +50,7 @@ export function HeroSection() {
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.12, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ delay: 0.12, duration: 0.8, ease: EASE }}
           className="font-syne text-5xl font-black leading-[0.92] tracking-tight text-white md:text-7xl lg:text-8xl"
         >
           The World&apos;s Finest

@@ -11,6 +11,8 @@ import { toast } from "sonner"
 
 // ─── ANIMATION VARIANTS ─────────────────────────────────────────────────────
 
+const EASE: [number, number, number, number] = [0.25, 0.4, 0.25, 1]
+
 const container = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
@@ -18,7 +20,7 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 }
 
 // ─── TYPES ───────────────────────────────────────────────────────────────────
@@ -370,7 +372,7 @@ export default function Homepage() {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ delay: 0.3, duration: 0.8, ease: EASE }}
             className="font-syne text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-6"
           >
             Stock Your Pantry
@@ -586,7 +588,7 @@ export default function Homepage() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={catInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.7, ease: EASE }}
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -650,7 +652,7 @@ export default function Homepage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={prodInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: 0.7, ease: EASE }}
             className="flex items-end justify-between mb-12"
           >
             <div>
@@ -815,7 +817,7 @@ export default function Homepage() {
                   initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -40 }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+                  transition={{ duration: 0.5, ease: EASE }}
                   className="w-full bg-white/[0.04] border border-white/[0.08] rounded-3xl p-8 md:p-12 backdrop-blur-xl text-center"
                 >
                   {/* Stars */}
@@ -900,7 +902,7 @@ export default function Homepage() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={promoInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: 0.7, ease: EASE }}
             className="flex-1"
           >
             <div className="inline-flex items-center gap-2 bg-[#C8F04B]/10 border border-[#C8F04B]/20 rounded-full px-4 py-1.5 mb-4">
@@ -930,7 +932,7 @@ export default function Homepage() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={promoInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
             className="grid grid-cols-3 gap-2 opacity-70 shrink-0"
           >
             {displayProducts.slice(0, 6).map((p, i) => (
@@ -954,7 +956,7 @@ export default function Homepage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={newsletterInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: 0.7, ease: EASE }}
           >
             {/* Icon */}
             <motion.div
