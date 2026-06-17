@@ -132,8 +132,8 @@ export function RevenueByCategoryChart({
             </Pie>
             <Tooltip
               contentStyle={tooltipStyle}
-              formatter={(val: number) =>
-                new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(val)
+              formatter={(val) =>
+                new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(Number(val ?? 0))
               }
             />
           </PieChart>
