@@ -169,7 +169,7 @@ export async function GET() {
     // Aggregate top products
     const productMap: Record<string, { id: string; name: string; sku: string; image: string; revenue: number; units: number }> = {};
     for (const item of topProductsRes.data ?? []) {
-      const prod = item.products as { id: string; name: string; sku: string; images: string[] } | null;
+      const prod = item.products as unknown as { id: string; name: string; sku: string; images: string[] } | null;
       if (!prod) continue;
       if (!productMap[item.product_id]) {
         productMap[item.product_id] = {
