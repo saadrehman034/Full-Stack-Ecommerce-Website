@@ -64,8 +64,8 @@ export default function InventoryPage() {
         .order("created_at", { ascending: false })
         .limit(100),
     ]);
-    setProducts((p as Product[]) ?? []);
-    setLogs((l as InventoryLog[]) ?? []);
+    setProducts((p as unknown as Product[]) ?? []);
+    setLogs((l as unknown as InventoryLog[]) ?? []);
     setLoading(false);
   };
 

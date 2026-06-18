@@ -57,7 +57,7 @@ export default async function AnalyticsPage() {
   ]);
 
   const orders: OrderRow[] = recentOrders ?? [];
-  const orderItems: OrderItemRow[] = (allOrderItems as OrderItemRow[]) ?? [];
+  const orderItems: OrderItemRow[] = (allOrderItems as unknown as OrderItemRow[]) ?? [];
   const customers: UserRow[] = newCustomers ?? [];
 
   // --- Orders per day (last 30 days) ---

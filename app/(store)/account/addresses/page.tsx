@@ -46,7 +46,7 @@ export default function AddressesPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
     const { data } = await supabase.from("addresses").select("*").eq("user_id", user.id).order("is_default", { ascending: false });
-    setAddresses((data || []) as Address[]);
+    setAddresses((data as unknown as Address[]) ?? []);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

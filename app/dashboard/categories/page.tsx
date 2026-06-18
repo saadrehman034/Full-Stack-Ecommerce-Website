@@ -61,7 +61,7 @@ export default function CategoriesPage() {
     if (error) {
       toast.error("Failed to load categories");
     } else {
-      setCategories((data as Category[]) ?? []);
+      setCategories((data as unknown as Category[]) ?? []);
     }
     setLoading(false);
   };

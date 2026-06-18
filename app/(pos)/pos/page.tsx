@@ -63,7 +63,7 @@ export default function POSPage() {
     if (activeCategory !== "all") q = q.eq("categories.slug", activeCategory);
     if (search) q = q.ilike("name", `%${search}%`);
     const { data } = await q.limit(60);
-    setProducts((data || []) as Product[]);
+    setProducts((data as unknown as Product[]) ?? []);
     setIsLoadingProducts(false);
   }, [activeCategory, search]);
 

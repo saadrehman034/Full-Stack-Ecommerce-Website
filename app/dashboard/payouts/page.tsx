@@ -73,7 +73,7 @@ export default function PayoutsPage() {
         .filter((p) => p.status === "completed")
         .reduce((s, p) => s + (p.amount ?? 0), 0);
 
-      setPayouts((payoutData ?? []) as Payout[]);
+      setPayouts((payoutData as unknown as Payout[]) ?? []);
       setAvailableBalance(Math.max(totalPaid - completedPayouts, 0));
     } catch (err) {
       toast.error("Failed to load payouts");

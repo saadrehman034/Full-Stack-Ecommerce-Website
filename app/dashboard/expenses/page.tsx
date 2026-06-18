@@ -83,7 +83,7 @@ export default function ExpensesPage() {
         .select("*")
         .order("date", { ascending: false });
       if (error) throw error;
-      setExpenses((data ?? []) as Expense[]);
+      setExpenses((data as unknown as Expense[]) ?? []);
     } catch (err) {
       toast.error("Failed to load expenses");
       console.error(err);

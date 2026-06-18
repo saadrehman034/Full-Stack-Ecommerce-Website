@@ -54,7 +54,7 @@ export default function ReviewsPage() {
     if (error) {
       toast.error("Failed to load reviews");
     } else {
-      setReviews((data as Review[]) ?? []);
+      setReviews((data as unknown as Review[]) ?? []);
     }
     setLoading(false);
   };

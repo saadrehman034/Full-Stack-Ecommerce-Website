@@ -46,7 +46,7 @@ export default function CouponsPage() {
     if (error) {
       toast.error("Failed to load coupons");
     } else {
-      setCoupons((data as Coupon[]) ?? []);
+      setCoupons((data as unknown as Coupon[]) ?? []);
     }
     setLoading(false);
   };
