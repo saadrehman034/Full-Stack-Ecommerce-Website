@@ -196,7 +196,10 @@ export default function POSPage() {
 
   if (showOpenShift) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0A0A0A] px-4">
+      <div className="relative flex min-h-screen items-center justify-center bg-[#0A0A0A] px-4">
+        <a href="/" className="absolute top-4 right-4 flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/15 transition-colors">
+          ← Homepage
+        </a>
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
           className="w-full max-w-sm rounded-3xl bg-[#111] border border-[#1E1E1E] p-8 shadow-2xl">
           <div className="mb-6 text-center">
@@ -451,26 +454,26 @@ export default function POSPage() {
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
               className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-2xl">
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="font-syne text-xl font-bold">Close Shift</h2>
-                <button onClick={() => setShowCloseShift(false)}><X className="h-5 w-5" /></button>
+                <h2 className="font-syne text-xl font-bold text-gray-900">Close Shift</h2>
+                <button onClick={() => setShowCloseShift(false)}><X className="h-5 w-5 text-gray-400" /></button>
               </div>
               <div className="space-y-4">
-                <div className="rounded-xl bg-muted/40 p-4 text-sm space-y-2">
-                  <p className="text-muted-foreground">Shift started: <span className="font-medium text-foreground">{session && new Date(session.openedAt).toLocaleTimeString()}</span></p>
-                  <p className="text-muted-foreground">Opening cash: <span className="font-medium text-foreground">${session?.openingCash.toFixed(2)}</span></p>
+                <div className="rounded-xl bg-gray-100 p-4 text-sm space-y-2">
+                  <p className="text-gray-500">Shift started: <span className="font-medium text-gray-800">{session && new Date(session.openedAt).toLocaleTimeString()}</span></p>
+                  <p className="text-gray-500">Opening cash: <span className="font-medium text-gray-800">${session?.openingCash.toFixed(2)}</span></p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Closing Cash ($)</label>
+                  <label className="text-sm font-medium text-gray-700">Closing Cash ($)</label>
                   <input type="number" step="0.01" value={closingCash} onChange={e => setClosingCash(e.target.value)} placeholder="0.00"
-                    className="mt-1.5 h-11 w-full rounded-xl border border-border px-4 outline-none focus:ring-2 focus:ring-ring" />
+                    className="mt-1.5 h-11 w-full rounded-xl border border-gray-300 bg-white px-4 text-gray-900 outline-none focus:ring-2 focus:ring-red-400 placeholder:text-gray-400" />
                 </div>
                 <div className="space-y-2">
                   <button onClick={closeShift}
-                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-destructive font-semibold text-white">
+                    className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-red-500 font-semibold text-white hover:bg-red-600 transition-colors">
                     <LogOut className="h-4 w-4" /> Close Shift
                   </button>
                   <button onClick={() => setShowCloseShift(false)}
-                    className="h-10 w-full rounded-xl border border-border text-sm font-medium text-muted-foreground hover:bg-muted">
+                    className="h-10 w-full rounded-xl border border-gray-200 text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
                     Cancel
                   </button>
                 </div>
