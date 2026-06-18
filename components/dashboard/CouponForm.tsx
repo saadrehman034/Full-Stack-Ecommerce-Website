@@ -146,7 +146,7 @@ export function CouponForm({ initialData, onSuccess, onClose }: Props) {
                   : "bg-[#1A1A1A] border border-[#2A2A2A] text-[#A0A0A0] hover:border-[#444]"
               }`}
             >
-              {t === "percentage" ? "Percentage (%)" : "Fixed Amount (£)"}
+              {t === "percentage" ? "Percentage (%)" : "Fixed Amount ($)"}
             </button>
           ))}
         </div>
@@ -155,11 +155,11 @@ export function CouponForm({ initialData, onSuccess, onClose }: Props) {
       {/* Value */}
       <div>
         <label className="text-xs text-[#555] uppercase tracking-wider mb-1.5 block">
-          Value ({type === "percentage" ? "%" : "£"}) *
+          Value ({type === "percentage" ? "%" : "$"}) *
         </label>
         <div className="relative">
           <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#555] text-sm">
-            {type === "percentage" ? "%" : "£"}
+            {type === "percentage" ? "%" : "$"}
           </span>
           <input
             type="number"
@@ -177,7 +177,7 @@ export function CouponForm({ initialData, onSuccess, onClose }: Props) {
       {/* Min Order */}
       <div>
         <label className="text-xs text-[#555] uppercase tracking-wider mb-1.5 block">
-          Minimum Order Amount (£) — optional
+          Minimum Order Amount ($) — optional
         </label>
         <input
           type="number"
@@ -194,7 +194,7 @@ export function CouponForm({ initialData, onSuccess, onClose }: Props) {
       {type === "percentage" && (
         <div>
           <label className="text-xs text-[#555] uppercase tracking-wider mb-1.5 block">
-            Maximum Discount Amount (£) — optional
+            Maximum Discount Amount ($) — optional
           </label>
           <input
             type="number"

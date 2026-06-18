@@ -87,7 +87,7 @@ export function AdminCouponsClient({ initialCoupons }: { initialCoupons: Coupon[
                 <select value={form.type} onChange={e => setForm(p => ({ ...p, type: e.target.value }))}
                   className="mt-1 h-10 w-full rounded-xl border border-border px-3 text-sm outline-none focus:ring-2 focus:ring-ring">
                   <option value="percentage">Percentage (%)</option>
-                  <option value="fixed">Fixed (£)</option>
+                  <option value="fixed">Fixed ($)</option>
                 </select>
               </div>
               <div>
@@ -96,7 +96,7 @@ export function AdminCouponsClient({ initialCoupons }: { initialCoupons: Coupon[
                   className="mt-1 h-10 w-full rounded-xl border border-border px-3 text-sm outline-none focus:ring-2 focus:ring-ring" />
               </div>
               <div>
-                <label className="text-xs font-medium text-muted-foreground">Min Order (£)</label>
+                <label className="text-xs font-medium text-muted-foreground">Min Order ($)</label>
                 <input type="number" value={form.min_order} onChange={e => setForm(p => ({ ...p, min_order: e.target.value }))} placeholder="0"
                   className="mt-1 h-10 w-full rounded-xl border border-border px-3 text-sm outline-none focus:ring-2 focus:ring-ring" />
               </div>

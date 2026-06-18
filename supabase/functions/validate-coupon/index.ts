@@ -52,7 +52,7 @@ serve(async (req) => {
 
     if (coupon.min_order_amount && subtotal < coupon.min_order_amount) {
       return new Response(JSON.stringify({
-        error: `Minimum order of £${coupon.min_order_amount.toFixed(2)} required`,
+        error: `Minimum order of $${coupon.min_order_amount.toFixed(2)} required`,
       }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 

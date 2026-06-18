@@ -342,7 +342,7 @@ export default function ExpensesPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="text-[11px] text-[#A0A0A0] uppercase tracking-widest block mb-2">Amount (£)</label>
+                  <label className="text-[11px] text-[#A0A0A0] uppercase tracking-widest block mb-2">Amount ($)</label>
                   <input
                     type="number"
                     min="0"

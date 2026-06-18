@@ -286,10 +286,10 @@ export function ProductForm({ initialData, categories, mode }: ProductFormProps)
       <Card title="Pricing">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label>Price (£) *</Label>
+            <Label>Price ($) *</Label>
             <div className="relative">
               <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#555] text-sm">
-                £
+                $
               </span>
               <input
                 type="number"
@@ -304,10 +304,10 @@ export function ProductForm({ initialData, categories, mode }: ProductFormProps)
             </div>
           </div>
           <div>
-            <Label>Compare Price (£)</Label>
+            <Label>Compare Price ($)</Label>
             <div className="relative">
               <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#555] text-sm">
-                £
+                $
               </span>
               <input
                 type="number"

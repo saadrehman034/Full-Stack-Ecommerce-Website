@@ -93,11 +93,11 @@ export function POSPaymentModal({
                 {/* Cash received input */}
                 <div className="mb-4">
                   <label className="block text-[#555] text-xs uppercase tracking-wider mb-2">
-                    Cash Received (£)
+                    Cash Received ($)
                   </label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#555] text-lg font-bold">
-                      £
+                      $
                     </span>
                     <input
                       type="number"
@@ -121,7 +121,7 @@ export function POSPaymentModal({
                         onClick={() => setCashReceived(String(amt))}
                         className="flex-1 py-2 border border-[#2A2A2A] text-white text-sm rounded-xl hover:border-[#C8F04B]/50 transition-all"
                       >
-                        £{amt}
+                        ${amt}
                       </button>
                     ))}
                   </div>

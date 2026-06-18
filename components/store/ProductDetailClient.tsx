@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 
 const TRUST_BADGES = [
-  { icon: Truck, label: "Free delivery over £50" },
+  { icon: Truck, label: "Free delivery over $50" },
   { icon: RotateCcw, label: "30-day returns" },
   { icon: Shield, label: "Secure checkout" },
   { icon: Package, label: "Premium packaging" },

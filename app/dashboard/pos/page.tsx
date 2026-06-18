@@ -866,7 +866,7 @@ export default function POSPage() {
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-[#555]">Shipping</span>
-              <span className="text-[#555]">£0.00</span>
+              <span className="text-[#555]">$0.00</span>
             </div>
             <div className="border-t border-[#1E1E1E] pt-2 flex justify-between items-center">
               <span className="text-white font-bold text-sm">Total</span>

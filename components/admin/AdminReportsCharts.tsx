@@ -30,8 +30,8 @@ export function AdminReportsCharts({ dailyData, categoryData, onlineRevenue, pos
             <LineChart data={dailyData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" strokeOpacity={0.5} />
               <XAxis dataKey="date" tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" interval={3} />
-              <YAxis tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" tickFormatter={v => `£${v}`} />
-              <Tooltip contentStyle={{ borderRadius: "12px", fontSize: "12px" }} formatter={(v) => [`£${Number(v).toFixed(2)}`, "Revenue"]} />
+              <YAxis tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" tickFormatter={v => `$${v}`} />
+              <Tooltip contentStyle={{ borderRadius: "12px", fontSize: "12px" }} formatter={(v) => [`$${Number(v).toFixed(2)}`, "Revenue"]} />
               <Line type="monotone" dataKey="revenue" stroke="#0D3B2E" strokeWidth={2.5} dot={false} />
             </LineChart>
           </ResponsiveContainer>
@@ -47,8 +47,8 @@ export function AdminReportsCharts({ dailyData, categoryData, onlineRevenue, pos
               <BarChart data={categoryData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" strokeOpacity={0.4} />
                 <XAxis dataKey="name" tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
-                <YAxis tick={{ fontSize: 10 }} tickFormatter={v => `£${v}`} />
-                <Tooltip formatter={(v) => [`£${Number(v).toFixed(2)}`, "Revenue"]} contentStyle={{ borderRadius: "12px", fontSize: "12px" }} />
+                <YAxis tick={{ fontSize: 10 }} tickFormatter={v => `$${v}`} />
+                <Tooltip formatter={(v) => [`$${Number(v).toFixed(2)}`, "Revenue"]} contentStyle={{ borderRadius: "12px", fontSize: "12px" }} />
                 <Bar dataKey="revenue" fill="#C8F04B" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -67,7 +67,7 @@ export function AdminReportsCharts({ dailyData, categoryData, onlineRevenue, pos
                   {sourceData.map((_, i) => <Cell key={i} fill={COLORS[i]} />)}
                 </Pie>
                 <Legend />
-                <Tooltip formatter={(v) => `£${Number(v).toFixed(2)}`} contentStyle={{ borderRadius: "12px", fontSize: "12px" }} />
+                <Tooltip formatter={(v) => `$${Number(v).toFixed(2)}`} contentStyle={{ borderRadius: "12px", fontSize: "12px" }} />
               </PieChart>
             </ResponsiveContainer>
           </div>

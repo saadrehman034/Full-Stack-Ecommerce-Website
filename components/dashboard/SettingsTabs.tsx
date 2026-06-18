@@ -121,7 +121,7 @@ export function SettingsTabs({ initialSettings }: Props) {
   const annInit = (initialSettings.announcement as Record<string, unknown>) ?? {};
   const [announcement, setAnnouncement] = useState({
     active: Boolean(annInit.active ?? false),
-    text: String(annInit.text ?? "Free delivery on orders over £50!"),
+    text: String(annInit.text ?? "Free delivery on orders over $50!"),
     bg_color: String(annInit.bg_color ?? "#C8F04B"),
     text_color: String(annInit.text_color ?? "#000000"),
   });
@@ -300,7 +300,7 @@ export function SettingsTabs({ initialSettings }: Props) {
                 className={inputCls}
                 value={storeInfo.currency_symbol}
                 onChange={(e) => setStoreInfo((p) => ({ ...p, currency_symbol: e.target.value }))}
-                placeholder="£"
+                placeholder="$"
               />
             </Field>
           </div>
@@ -357,7 +357,7 @@ export function SettingsTabs({ initialSettings }: Props) {
       {/* Shipping */}
       {activeTab === "shipping" && (
         <div className="bg-[#111111] border border-[#1E1E1E] rounded-2xl p-6 space-y-5 max-w-xl">
-          <Field label="Free Shipping Threshold (£)">
+          <Field label="Free Shipping Threshold ($)">
             <input
               type="number"
               className={inputCls}
@@ -367,7 +367,7 @@ export function SettingsTabs({ initialSettings }: Props) {
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
-            <Field label="Standard Rate (£)">
+            <Field label="Standard Rate ($)">
               <input
                 type="number"
                 step="0.01"
@@ -387,7 +387,7 @@ export function SettingsTabs({ initialSettings }: Props) {
             </Field>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Field label="Express Rate (£)">
+            <Field label="Express Rate ($)">
               <input
                 type="number"
                 step="0.01"
@@ -469,7 +469,7 @@ export function SettingsTabs({ initialSettings }: Props) {
               className={inputCls}
               value={announcement.text}
               onChange={(e) => setAnnouncement((p) => ({ ...p, text: e.target.value }))}
-              placeholder="Free delivery on orders over £50!"
+              placeholder="Free delivery on orders over $50!"
             />
           </Field>
 

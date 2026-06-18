@@ -29,7 +29,7 @@ serve(async (req) => {
           ${item.products?.name || "Product"} &times; ${item.quantity}
         </td>
         <td style="padding:8px 16px;border-bottom:1px solid #f0f0f0;text-align:right;font-weight:600;">
-          £${item.total_price.toFixed(2)}
+          $${item.total_price.toFixed(2)}
         </td>
       </tr>
     `).join("");
@@ -75,10 +75,10 @@ serve(async (req) => {
 
             <!-- Totals -->
             <div style="border-top:2px solid #f0f0f0;padding-top:16px;space-y:8px;">
-              ${order.discount_amount > 0 ? `<div style="display:flex;justify-content:space-between;color:#16a34a;margin-bottom:6px;"><span>Discount</span><span>-£${order.discount_amount.toFixed(2)}</span></div>` : ""}
-              <div style="display:flex;justify-content:space-between;color:#666;margin-bottom:6px;"><span>Shipping</span><span>${order.shipping_amount === 0 ? "Free" : `£${order.shipping_amount.toFixed(2)}`}</span></div>
+              ${order.discount_amount > 0 ? `<div style="display:flex;justify-content:space-between;color:#16a34a;margin-bottom:6px;"><span>Discount</span><span>-$${order.discount_amount.toFixed(2)}</span></div>` : ""}
+              <div style="display:flex;justify-content:space-between;color:#666;margin-bottom:6px;"><span>Shipping</span><span>${order.shipping_amount === 0 ? "Free" : `$${order.shipping_amount.toFixed(2)}`}</span></div>
               <div style="display:flex;justify-content:space-between;font-weight:700;font-size:18px;color:#0D3B2E;margin-top:8px;">
-                <span>Total</span><span>£${order.total_amount.toFixed(2)}</span>
+                <span>Total</span><span>$${order.total_amount.toFixed(2)}</span>
               </div>
             </div>
 

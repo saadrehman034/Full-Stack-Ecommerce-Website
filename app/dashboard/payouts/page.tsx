@@ -210,7 +210,7 @@ export default function PayoutsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-[11px] text-[#A0A0A0] uppercase tracking-widest block mb-2">
-                    Amount (£)
+                    Amount ($)
                   </label>
                   <input
                     type="number"

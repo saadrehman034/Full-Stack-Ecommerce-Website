@@ -80,7 +80,7 @@ const FALLBACK_REVIEWS: Review[] = [
 ]
 
 const BENEFITS = [
-  { icon: "🚀", title: "Next Day Delivery", desc: "Order before 2pm for next day delivery on all orders over £30.", color: "from-violet-500/20 to-violet-600/5", border: "border-violet-500/20" },
+  { icon: "🚀", title: "Next Day Delivery", desc: "Order before 2pm for next day delivery on all orders over $30.", color: "from-violet-500/20 to-violet-600/5", border: "border-violet-500/20" },
   { icon: "🌍", title: "Globally Sourced", desc: "Ingredients handpicked from 20+ countries for authentic flavour.", color: "from-cyan-500/20 to-cyan-600/5", border: "border-cyan-500/20" },
   { icon: "✓", title: "Quality Assured", desc: "Every product rigorously tested for freshness and purity before it reaches you.", color: "from-emerald-500/20 to-emerald-600/5", border: "border-emerald-500/20" },
   { icon: "♻", title: "Eco Packaging", desc: "All orders packed in 100% recyclable, sustainably sourced materials.", color: "from-lime-500/20 to-lime-600/5", border: "border-lime-500/20" },
@@ -543,7 +543,7 @@ export default function Homepage() {
                 <span className="font-black text-xs tracking-widest text-black uppercase">PantryLegend</span>
               </span>
               <span className="text-black/30 mx-2">◆</span>
-              <span className="inline-block mx-6 text-black font-bold text-sm tracking-wide">Free Delivery Over £50</span>
+              <span className="inline-block mx-6 text-black font-bold text-sm tracking-wide">Free Delivery Over $50</span>
               <span className="text-black/30 mx-2">◆</span>
               {/* Logo: Twinings-style */}
               <span className="inline-flex items-center mx-6 gap-1.5">

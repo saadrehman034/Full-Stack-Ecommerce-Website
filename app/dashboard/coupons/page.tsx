@@ -208,7 +208,7 @@ export default function CouponsPage() {
                           ? "bg-purple-950/30 text-purple-400"
                           : "bg-blue-950/30 text-blue-400"
                       }`}>
-                        {coupon.type === "percentage" ? "%" : "£"}
+                        {coupon.type === "percentage" ? "%" : "$"}
                       </span>
                     </td>
 

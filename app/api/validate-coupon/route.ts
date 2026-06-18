@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ valid: false, error: "This coupon has reached its usage limit" });
     }
     if (coupon.min_order_amount && subtotal < coupon.min_order_amount) {
-      return NextResponse.json({ valid: false, error: `Minimum order of £${coupon.min_order_amount.toFixed(2)} required` });
+      return NextResponse.json({ valid: false, error: `Minimum order of $${coupon.min_order_amount.toFixed(2)} required` });
     }
 
     let discountAmount = 0;

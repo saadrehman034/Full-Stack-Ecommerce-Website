@@ -49,7 +49,7 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
       slug: product.slug,
     });
     toast.success(`${product.name} added to cart`, {
-      description: `£${product.price.toFixed(2)}`,
+      description: `$${product.price.toFixed(2)}`,
       action: { label: "View Cart", onClick: () => { window.location.href = "/cart"; } },
     });
     setAddState("added");
@@ -144,9 +144,9 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             <span className="ml-1 text-[11px] text-muted-foreground">(12)</span>
           </div>
           <div className="flex items-center gap-2 pt-0.5">
-            <span className="font-syne text-base font-bold text-foreground">£{product.price.toFixed(2)}</span>
+            <span className="font-syne text-base font-bold text-foreground">${product.price.toFixed(2)}</span>
             {product.compare_price && (
-              <span className="text-xs text-muted-foreground line-through">£{product.compare_price.toFixed(2)}</span>
+              <span className="text-xs text-muted-foreground line-through">${product.compare_price.toFixed(2)}</span>
             )}
             <span className="ml-auto text-[11px] text-muted-foreground">/{product.unit}</span>
           </div>

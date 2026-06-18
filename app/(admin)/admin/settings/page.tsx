@@ -12,7 +12,7 @@ export default function AdminSettingsPage() {
     taxRate: "10",
     freeShippingThreshold: "50",
     flatShippingRate: "4.99",
-    announcementText: "Free delivery on orders over £50",
+    announcementText: "Free delivery on orders over $50",
     announcementActive: true,
     announcementColor: "#0D3B2E",
   });
@@ -58,12 +58,12 @@ export default function AdminSettingsPage() {
               className="mt-1.5 h-11 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:ring-2 focus:ring-ring" />
           </div>
           <div>
-            <label className="text-sm font-medium">Free Shipping Over (£)</label>
+            <label className="text-sm font-medium">Free Shipping Over ($)</label>
             <input type="number" value={settings.freeShippingThreshold} onChange={e => setSettings(p => ({ ...p, freeShippingThreshold: e.target.value }))}
               className="mt-1.5 h-11 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:ring-2 focus:ring-ring" />
           </div>
           <div>
-            <label className="text-sm font-medium">Flat Shipping Rate (£)</label>
+            <label className="text-sm font-medium">Flat Shipping Rate ($)</label>
             <input type="number" value={settings.flatShippingRate} onChange={e => setSettings(p => ({ ...p, flatShippingRate: e.target.value }))}
               className="mt-1.5 h-11 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none focus:ring-2 focus:ring-ring" />
           </div>
