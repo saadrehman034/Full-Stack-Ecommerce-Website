@@ -200,7 +200,7 @@ export default function InventoryPage() {
                   <th className="px-6 py-3 text-left">Product</th>
                   <th className="px-6 py-3 text-left">SKU</th>
                   <th className="px-6 py-3 text-left">Category</th>
-                  <th className="px-6 py-3 text-left">Stock</th>
+                  <th className="px-6 py-3 text-left">Quantity</th>
                   <th className="px-6 py-3 text-left">Threshold</th>
                   <th className="px-6 py-3 text-left">Status</th>
                   <th className="px-6 py-3 text-left">Action</th>
@@ -241,7 +241,7 @@ export default function InventoryPage() {
                       </td>
                       <td className="px-6 py-4">
                         <span className={`font-bold text-sm ${getStockColor(p)}`}>
-                          {p.stock_quantity} {p.unit}
+                          {p.stock_quantity}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-sm text-[#A0A0A0]">
