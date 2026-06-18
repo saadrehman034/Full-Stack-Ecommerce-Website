@@ -583,7 +583,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 3: FEATURED CATEGORIES ────────────────────────────── */}
-      <section ref={catRef} className="relative py-24 px-6 overflow-hidden bg-gray-50">
+      <section ref={catRef} className="relative py-24 px-6 overflow-hidden bg-[#0f1923]">
         <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -595,10 +595,10 @@ export default function Homepage() {
             <div className="h-px w-12 bg-[#5a7a00]" />
             <span className="text-[#5a7a00] text-sm font-semibold uppercase tracking-widest">Categories</span>
           </div>
-          <h2 className="font-syne text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          <h2 className="font-syne text-4xl md:text-5xl font-black text-white mb-4">
             Shop by Category
           </h2>
-          <p className="text-gray-500 text-lg max-w-lg">
+          <p className="text-white/50 text-lg max-w-lg">
             From aromatic spices to wholesome grains — everything your pantry needs.
           </p>
         </motion.div>
@@ -647,7 +647,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 4: FEATURED PRODUCTS ───────────────────────────────── */}
-      <section ref={prodRef} className="relative py-24 overflow-hidden bg-gray-50">
+      <section ref={prodRef} className="relative py-24 overflow-hidden bg-[#111c27]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -660,13 +660,13 @@ export default function Homepage() {
                 <div className="h-px w-12 bg-[#5a7a00]" />
                 <span className="text-[#5a7a00] text-sm font-semibold uppercase tracking-widest">Featured</span>
               </div>
-              <h2 className="font-syne text-4xl md:text-5xl font-black text-gray-900">
+              <h2 className="font-syne text-4xl md:text-5xl font-black text-white">
                 Staff Picks
               </h2>
             </div>
             <Link
               href="/shop"
-              className="hidden md:flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors text-sm font-medium"
+              className="hidden md:flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm font-medium"
             >
               View All <span>→</span>
             </Link>
