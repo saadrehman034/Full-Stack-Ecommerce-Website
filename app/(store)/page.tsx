@@ -583,11 +583,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 3: FEATURED CATEGORIES ────────────────────────────── */}
-      <section ref={catRef} className="relative py-24 px-6 overflow-hidden bg-gradient-to-br from-indigo-950 via-purple-950/80 to-[#060810]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] rounded-full bg-violet-600/20 blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-indigo-500/15 blur-[100px]" />
-        </div>
+      <section ref={catRef} className="relative py-24 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -701,12 +697,10 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 5: BENEFITS / WHY US ──────────────────────────────── */}
-      <section ref={benefitsRef} className="relative isolate py-24 px-6 overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-950/70 to-[#060810]">
+      <section ref={benefitsRef} className="relative isolate py-24 px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <Image src="/d.jpg" alt="" fill className="object-cover object-center opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/40 via-teal-900/30 to-[#060810]/60" />
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-emerald-500/15 blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-teal-400/10 blur-[100px]" />
+          <Image src="/d.jpg" alt="" fill className="object-cover object-center" />
+          <div className="absolute inset-0 bg-[#060810]/50" />
         </div>
         <div className="max-w-7xl mx-auto">
           <motion.div
