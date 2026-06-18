@@ -99,7 +99,7 @@ export function Navbar() {
               <motion.div key={l.href} whileHover={{ y: -1 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>
                 <Link
                   href={l.href}
-                  className="text-sm text-white/60 hover:text-white transition-colors"
+                  className="text-sm text-white/80 hover:text-white bg-[#0c0f1a]/80 hover:bg-[#1a1f35] border border-white/[0.10] rounded-lg px-3 py-1.5 transition-all duration-200"
                 >
                   {l.label}
                 </Link>
