@@ -25,7 +25,7 @@ const checkoutSchema = z.object({
   postal_code: z.string().min(3, "Postal code is required"),
   country: z.string().min(2, "Country is required"),
   notes: z.string().optional(),
-  payment_method: z.enum(["card", "cash"]),
+  payment_method: z.literal("card"),
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
@@ -54,7 +54,6 @@ export default function CheckoutPage() {
     defaultValues: { payment_method: "card", country: "United States" },
   });
 
-  const paymentMethod = watch("payment_method");
 
   const onSubmit = async (data: CheckoutFormValues) => {
     if (items.length === 0) { toast.error("Your cart is empty."); return; }
@@ -248,39 +247,22 @@ export default function CheckoutPage() {
               {/* Step 1: Payment */}
               {currentStep === 1 && (
                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-5">
-                  <h2 className="font-syne text-2xl font-black text-white">Payment Method</h2>
+                  <h2 className="font-syne text-2xl font-black text-white">Payment</h2>
 
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {[
-                      { value: "card", label: "Credit / Debit Card", icon: CreditCard, desc: "Powered by Stripe" },
-                      { value: "cash", label: "Cash on Delivery", icon: null, desc: "Pay when you receive" },
-                    ].map(({ value, label, icon: Icon, desc }) => (
-                      <label
-                        key={value}
-                        className={`flex cursor-pointer items-start gap-3 rounded-2xl border-2 p-4 transition-all ${
-                          paymentMethod === value
-                            ? "border-[#C8F04B] bg-[#C8F04B]/10"
-                            : "border-white/[0.1] bg-white/[0.04] hover:border-white/[0.25]"
-                        }`}
-                      >
-                        <input {...register("payment_method")} type="radio" value={value} className="mt-0.5 accent-[#C8F04B]" />
-                        <div>
-                          <div className="flex items-center gap-2">
-                            {Icon && <Icon className="h-4 w-4 text-white/70" />}
-                            <span className="font-medium text-sm text-white/90">{label}</span>
-                          </div>
-                          <p className="text-xs text-white/40 mt-0.5">{desc}</p>
-                        </div>
-                      </label>
-                    ))}
+                  <div className="flex items-center gap-3 rounded-2xl border-2 border-[#C8F04B] bg-[#C8F04B]/10 p-4">
+                    <CreditCard className="h-5 w-5 shrink-0 text-[#C8F04B]" />
+                    <div>
+                      <p className="font-semibold text-sm text-white/90">Credit / Debit Card</p>
+                      <p className="text-xs text-white/40 mt-0.5">Powered by Stripe — secure checkout</p>
+                    </div>
                   </div>
 
-                  {paymentMethod === "card" && (
-                    <div className="flex items-center gap-2 rounded-xl bg-white/[0.04] border border-white/[0.08] p-3 text-sm text-white/50">
-                      <Lock className="h-4 w-4 shrink-0 text-[#C8F04B]" />
-                      You&apos;ll be redirected to Stripe&apos;s secure payment page.
-                    </div>
-                  )}
+                  <div className="flex items-center gap-2 rounded-xl bg-white/[0.04] border border-white/[0.08] p-3 text-sm text-white/50">
+                    <Lock className="h-4 w-4 shrink-0 text-[#C8F04B]" />
+                    You&apos;ll be redirected to Stripe&apos;s secure payment page.
+                  </div>
+
+                  <input type="hidden" {...register("payment_method")} value="card" />
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-white/70">Order Notes (optional)</label>
@@ -339,9 +321,7 @@ export default function CheckoutPage() {
                       disabled={isLoading}
                       className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-[#C8F04B] font-syne font-bold text-black transition-all hover:scale-[1.01] disabled:opacity-70 shadow-[0_0_30px_rgba(200,240,75,0.20)]"
                     >
-                      {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : (
-                        <>{paymentMethod === "card" ? "Pay Now" : "Place Order"}</>
-                      )}
+                      {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Pay Now"}
                     </button>
                   </div>
                 </motion.div>
