@@ -15,14 +15,12 @@ import { toast } from "sonner";
 
 const CATEGORY_MAP: Record<string, string> = {
   all: "All",
-  "candy-treats": "Candy",
+  "spices-herbs": "Spices",
+  "grains-pulses": "Grains",
+  "oils-vinegars": "Oils",
   "snacks-nuts": "Snacks",
   beverages: "Beverages",
-  "spreads-condiments": "Spreads",
   "baking-essentials": "Baking",
-  household: "Household",
-  "pet-supplies": "Pet",
-  electronics: "Electronics",
 };
 
 type Product = {
@@ -61,7 +59,7 @@ export default function POSPage() {
 
   const loadProducts = useCallback(async () => {
     setIsLoadingProducts(true);
-    let q = supabase.from("products").select("*, categories!inner(name, slug)").eq("is_active", true);
+    let q = supabase.from("products").select("*, categories(name, slug)").eq("is_active", true);
     if (activeCategory !== "all") q = q.eq("categories.slug", activeCategory);
     if (search) q = q.ilike("name", `%${search}%`);
     const { data } = await q.limit(60);
@@ -198,22 +196,22 @@ export default function POSPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#0A0A0A] px-4">
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-sm rounded-3xl bg-[#111] border border-[#1E1E1E] p-8 shadow-2xl">
+          className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-2xl">
           <div className="mb-6 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#C8F04B]/10 border border-[#C8F04B]/30">
-              <Clock className="h-7 w-7 text-[#C8F04B]" />
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+              <Clock className="h-7 w-7 text-primary" />
             </div>
-            <h2 className="font-syne text-2xl font-bold text-white">Open Shift</h2>
-            <p className="mt-1 text-sm text-white/50">Enter your opening cash float</p>
+            <h2 className="font-syne text-2xl font-bold">Open Shift</h2>
+            <p className="mt-1 text-sm text-muted-foreground">Enter your opening cash float</p>
           </div>
           <div className="space-y-4">
             <div>
-              <label className="text-xs font-semibold uppercase tracking-wider text-white/40">Opening Cash (£)</label>
+              <label className="text-sm font-medium">Opening Cash (£)</label>
               <input value={openingCash} onChange={e => setOpeningCash(e.target.value)} type="number" step="0.01" placeholder="0.00"
-                className="mt-2 h-14 w-full rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] px-4 text-xl font-bold text-white outline-none focus:border-[#C8F04B] placeholder:text-[#333]" />
+                className="mt-1.5 h-12 w-full rounded-xl border border-border bg-background px-4 text-lg font-bold outline-none focus:ring-2 focus:ring-ring" />
             </div>
             <button onClick={openShift}
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#C8F04B] font-bold text-black transition-transform hover:scale-[1.02]">
+              className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary font-semibold text-primary-foreground transition-transform hover:scale-[1.01]">
               Open Shift
             </button>
           </div>
@@ -225,22 +223,22 @@ export default function POSPage() {
   return (
     <div className="flex h-screen flex-col bg-[#F5F5F5] dark:bg-[#0A0A0A] overflow-hidden">
       {/* Top Bar */}
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-[#1E1E1E] bg-[#111] px-4">
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-border/40 bg-primary px-4">
         <div className="flex items-center gap-3">
-          <span className="font-syne text-lg font-bold text-white">PantryLegend POS</span>
+          <span className="font-syne text-lg font-bold text-primary-foreground">PantryLegend POS</span>
           {session && (
-            <span className="rounded-full bg-[#C8F04B]/15 border border-[#C8F04B]/30 px-3 py-0.5 text-xs font-medium text-[#C8F04B]">
+            <span className="rounded-full bg-primary-foreground/20 px-3 py-0.5 text-xs font-medium text-primary-foreground">
               Shift open · {new Date(session.openedAt).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}
             </span>
           )}
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => setShowHeld(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/15">
+            className="flex items-center gap-1.5 rounded-lg bg-primary-foreground/20 px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary-foreground/30">
             <PauseCircle className="h-3.5 w-3.5" /> Held ({heldOrders.length})
           </button>
           <button onClick={() => setShowCloseShift(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/15">
+            className="flex items-center gap-1.5 rounded-lg bg-primary-foreground/20 px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary-foreground/30">
             <LogOut className="h-3.5 w-3.5" /> End Shift
           </button>
         </div>
