@@ -330,7 +330,7 @@ export default function Homepage() {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/2.jpg')" }}
         >
-          <div className="absolute inset-0 bg-[#1a2433]/38" />
+          <div className="absolute inset-0 bg-[#060810]/65" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#C8F04B]/8 via-transparent to-transparent" />
         </div>
 
