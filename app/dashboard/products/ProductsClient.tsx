@@ -174,7 +174,7 @@ export function ProductsClient({ products }: { products: Product[] }) {
                       <div className="flex flex-col items-center gap-0.5">
                         <StatusBadge status={stock} type="stock" />
                         <span className="text-[10px] text-[#555]">
-                          {product.stock_quantity} units
+                          {Math.floor(product.stock_quantity)}
                         </span>
                       </div>
                     </td>

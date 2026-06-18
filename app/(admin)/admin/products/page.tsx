@@ -102,7 +102,7 @@ export default async function AdminProductsPage({
                     <td className="px-4 py-3 font-semibold">{formatCurrency(p.price)}</td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${stockStatus === "out" ? "bg-red-100 text-red-700" : stockStatus === "low" ? "bg-amber-100 text-amber-700" : "bg-green-100 text-green-700"}`}>
-                        {p.stock_quantity} {p.unit}
+                        {Math.floor(p.stock_quantity)}
                       </span>
                     </td>
                     <td className="px-4 py-3">
