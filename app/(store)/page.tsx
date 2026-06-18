@@ -105,9 +105,9 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
   }
 
   return (
-    <div className="group relative bg-white/[0.04] border border-white/[0.07] rounded-2xl overflow-hidden hover:border-[#C8F04B]/30 hover:bg-white/[0.07] transition-all duration-300">
+    <div className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-[#C8F04B]/60 hover:shadow-md transition-all duration-300">
       {/* Image */}
-      <div className="relative aspect-square overflow-hidden bg-white/[0.03]">
+      <div className="relative aspect-square overflow-hidden bg-gray-100">
         {product.images?.[0] ? (
           <Image
             src={product.images[0]}
@@ -117,7 +117,7 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
             sizes="(max-width: 640px) 50vw, 25vw"
           />
         ) : (
-          <div className="w-full h-full bg-white/5 flex items-center justify-center text-white/20 text-4xl">🌿</div>
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center text-gray-300 text-4xl">🌿</div>
         )}
         {product.compare_price && (
           <div className="absolute top-2 left-2 bg-rose-500 text-white text-[10px] font-bold rounded-full px-2 py-0.5 z-10">
@@ -125,7 +125,7 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
           </div>
         )}
         {/* Quick add overlay */}
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
           <button
             onClick={handleAdd}
             className="bg-[#C8F04B] text-black font-bold text-sm px-4 py-2 rounded-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-lg"
@@ -136,18 +136,18 @@ function ProductCard({ product, onAddToCart }: { product: Product; onAddToCart: 
       </div>
       {/* Info */}
       <div className="p-4">
-        <p className="text-white/40 text-xs mb-1">{product.categories?.name}</p>
-        <h3 className="font-syne font-bold text-white text-sm leading-tight mb-2 truncate">{product.name}</h3>
+        <p className="text-gray-400 text-xs mb-1">{product.categories?.name}</p>
+        <h3 className="font-syne font-bold text-gray-900 text-sm leading-tight mb-2 truncate">{product.name}</h3>
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-2">
-            <span className="font-syne font-black text-[#C8F04B]">{formatCurrency(product.price)}</span>
+            <span className="font-syne font-black text-[#5a7a00]">{formatCurrency(product.price)}</span>
             {product.compare_price && (
-              <span className="text-white/30 text-xs line-through">{formatCurrency(product.compare_price)}</span>
+              <span className="text-gray-400 text-xs line-through">{formatCurrency(product.compare_price)}</span>
             )}
           </div>
           <button
             onClick={handleAdd}
-            className="w-8 h-8 rounded-lg bg-[#C8F04B]/10 border border-[#C8F04B]/20 flex items-center justify-center text-[#C8F04B] hover:bg-[#C8F04B] hover:text-black transition-all text-lg leading-none font-bold"
+            className="w-8 h-8 rounded-lg bg-[#C8F04B]/20 border border-[#C8F04B]/40 flex items-center justify-center text-[#5a7a00] hover:bg-[#C8F04B] hover:text-black transition-all text-lg leading-none font-bold"
           >
             +
           </button>
@@ -583,7 +583,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 3: FEATURED CATEGORIES ────────────────────────────── */}
-      <section ref={catRef} className="relative py-24 px-6 overflow-hidden">
+      <section ref={catRef} className="relative py-24 px-6 overflow-hidden bg-gray-50">
         <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -592,13 +592,13 @@ export default function Homepage() {
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px w-12 bg-[#C8F04B]" />
-            <span className="text-[#C8F04B] text-sm font-semibold uppercase tracking-widest">Categories</span>
+            <div className="h-px w-12 bg-[#5a7a00]" />
+            <span className="text-[#5a7a00] text-sm font-semibold uppercase tracking-widest">Categories</span>
           </div>
-          <h2 className="font-syne text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 className="font-syne text-4xl md:text-5xl font-black text-gray-900 mb-4">
             Shop by Category
           </h2>
-          <p className="text-white/50 text-lg max-w-lg">
+          <p className="text-gray-500 text-lg max-w-lg">
             From aromatic spices to wholesome grains — everything your pantry needs.
           </p>
         </motion.div>
@@ -647,7 +647,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 4: FEATURED PRODUCTS ───────────────────────────────── */}
-      <section ref={prodRef} className="relative py-24 overflow-hidden">
+      <section ref={prodRef} className="relative py-24 overflow-hidden bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -657,16 +657,16 @@ export default function Homepage() {
           >
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="h-px w-12 bg-[#C8F04B]" />
-                <span className="text-[#C8F04B] text-sm font-semibold uppercase tracking-widest">Featured</span>
+                <div className="h-px w-12 bg-[#5a7a00]" />
+                <span className="text-[#5a7a00] text-sm font-semibold uppercase tracking-widest">Featured</span>
               </div>
-              <h2 className="font-syne text-4xl md:text-5xl font-black text-white">
+              <h2 className="font-syne text-4xl md:text-5xl font-black text-gray-900">
                 Staff Picks
               </h2>
             </div>
             <Link
               href="/shop"
-              className="hidden md:flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm font-medium"
+              className="hidden md:flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               View All <span>→</span>
             </Link>
@@ -688,7 +688,7 @@ export default function Homepage() {
           <div className="mt-8 flex justify-center md:hidden">
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/[0.12] transition-all"
+              className="inline-flex items-center gap-2 bg-gray-900 border border-gray-900 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-gray-700 transition-all"
             >
               View All Products →
             </Link>
