@@ -16,8 +16,8 @@ import { useRouter } from "next/navigation";
 
 const checkoutSchema = z.object({
   full_name: z.string().min(2, "Name is required"),
-  email: z.string().email("Valid email required"),
-  phone: z.string().optional(),
+  email: z.string().email("Valid email required").optional().or(z.literal("")),
+  phone: z.string().min(7, "Phone number is required"),
   line1: z.string().min(3, "Address is required"),
   line2: z.string().optional(),
   city: z.string().min(2, "City is required"),
@@ -51,7 +51,7 @@ export default function CheckoutPage() {
     resolver: zodResolver(checkoutSchema),
     mode: "onSubmit",
     reValidateMode: "onSubmit",
-    defaultValues: { payment_method: "card", country: "United Kingdom" },
+    defaultValues: { payment_method: "card", country: "United States" },
   });
 
   const paymentMethod = watch("payment_method");
@@ -189,15 +189,16 @@ export default function CheckoutPage() {
                       {errors.full_name && <p className="text-xs text-red-400">{errors.full_name.message}</p>}
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-sm font-medium text-white/70">Email *</label>
+                      <label className="text-sm font-medium text-white/70">Email (optional)</label>
                       <input {...register("email")} type="email" placeholder="jane@example.com" className={inputClass} />
                       {errors.email && <p className="text-xs text-red-400">{errors.email.message}</p>}
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-sm font-medium text-white/70">Phone (optional)</label>
-                    <input {...register("phone")} type="tel" placeholder="+44 7700 900000" className={inputClass} />
+                    <label className="text-sm font-medium text-white/70">Phone *</label>
+                    <input {...register("phone")} type="tel" placeholder="+1 555 000 0000" className={inputClass} />
+                    {errors.phone && <p className="text-xs text-red-400">{errors.phone.message}</p>}
                   </div>
 
                   <div className="space-y-1.5">
@@ -214,24 +215,24 @@ export default function CheckoutPage() {
                   <div className="grid gap-4 sm:grid-cols-3">
                     <div className="space-y-1.5">
                       <label className="text-sm font-medium text-white/70">City *</label>
-                      <input {...register("city")} placeholder="London" className={inputClass} />
+                      <input {...register("city")} placeholder="New York" className={inputClass} />
                       {errors.city && <p className="text-xs text-red-400">{errors.city.message}</p>}
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-sm font-medium text-white/70">State / County *</label>
-                      <input {...register("state")} placeholder="England" className={inputClass} />
+                      <label className="text-sm font-medium text-white/70">State *</label>
+                      <input {...register("state")} placeholder="NY" className={inputClass} />
                       {errors.state && <p className="text-xs text-red-400">{errors.state.message}</p>}
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-sm font-medium text-white/70">Postal Code *</label>
-                      <input {...register("postal_code")} placeholder="EC1A 1BB" className={inputClass} />
+                      <label className="text-sm font-medium text-white/70">ZIP Code *</label>
+                      <input {...register("postal_code")} placeholder="10001" className={inputClass} />
                       {errors.postal_code && <p className="text-xs text-red-400">{errors.postal_code.message}</p>}
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-white/70">Country *</label>
-                    <input {...register("country")} placeholder="United Kingdom" className={inputClass} />
+                    <input {...register("country")} placeholder="United States" className={inputClass} />
                   </div>
 
                   <button
