@@ -91,7 +91,7 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C8F04B]/30 to-transparent" />
 
       <div className="container mx-auto max-w-screen-xl px-4 pt-16 pb-8">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-8 md:gap-10 md:grid-cols-3">
 
           {/* Brand */}
           <div className="space-y-5">

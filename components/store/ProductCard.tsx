@@ -148,7 +148,16 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             {product.compare_price && (
               <span className="text-xs text-muted-foreground line-through">${product.compare_price.toFixed(2)}</span>
             )}
-            <span className="ml-auto text-[11px] text-muted-foreground">/{product.unit}</span>
+            <button
+              onClick={handleAddToCart}
+              disabled={product.stock_quantity <= 0}
+              className={`ml-auto flex h-7 w-7 items-center justify-center rounded-lg text-sm font-bold transition-all disabled:opacity-40 md:hidden ${
+                addState === "added" ? "bg-green-500 text-white" : "bg-[#C8F04B] text-black"
+              }`}
+            >
+              {addState === "added" ? "✓" : "+"}
+            </button>
+            <span className="ml-auto hidden text-[11px] text-muted-foreground md:block">/{product.unit}</span>
           </div>
         </div>
       </Link>

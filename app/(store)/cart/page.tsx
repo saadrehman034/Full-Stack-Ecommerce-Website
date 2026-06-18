@@ -75,7 +75,7 @@ export default function CartPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#060810]/20 via-transparent to-[#060810]/70" />
       </div>
       <div className="container mx-auto px-4 py-12 md:py-16">
-        <h1 className="mb-6 md:mb-10 font-syne text-3xl md:text-4xl font-black text-white md:text-5xl">
+        <h1 className="mb-6 md:mb-10 font-syne text-3xl md:text-5xl font-black text-white">
           Your <span className="text-[#C8F04B]">Cart</span>
         </h1>
 

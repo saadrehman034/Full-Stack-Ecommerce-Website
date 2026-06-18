@@ -356,7 +356,7 @@ export default function Homepage() {
         />
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center w-full">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -373,7 +373,7 @@ export default function Homepage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: EASE }}
-            className="font-syne text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-6"
+            className="font-syne text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-6"
           >
             Stock Your Pantry
             <br />
@@ -387,7 +387,7 @@ export default function Homepage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-white/50 text-base md:text-xl max-w-xl mx-auto mb-10 leading-relaxed px-2"
+            className="text-white/50 text-sm md:text-xl max-w-xl mx-auto mb-10 leading-relaxed px-2"
           >
             Premium spices, grains, oils and pantry staples sourced from around the world.
             Delivered fresh to your door.
@@ -398,7 +398,7 @@ export default function Homepage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-16"
           >
             <Link
               href="/shop"
@@ -420,7 +420,7 @@ export default function Homepage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="relative flex items-end justify-center gap-3 md:gap-5 mt-6 px-4"
+            className="relative flex items-end justify-center gap-2 sm:gap-3 md:gap-5 mt-4 sm:mt-6 px-2 sm:px-4"
           >
             {/* LEFT CARD — tilted left, lime glow */}
             <motion.div
@@ -430,7 +430,7 @@ export default function Homepage() {
               style={{ transform: "rotate(-6deg)" }}
             >
               <Link href="/shop" className="block group">
-                <div className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-[#C8F04B]/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(200,240,75,0.2)]">
+                <div className="relative w-20 h-28 sm:w-32 sm:h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-[#C8F04B]/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(200,240,75,0.2)]">
                   <Image
                     src={displayProducts[0]?.images?.[0] || "https://images.unsplash.com/photo-1634900839777-df4c3c037d8a?q=80&w=400&auto=format&fit=crop"}
                     alt={displayProducts[0]?.name || "Premium Spice"}
@@ -463,7 +463,7 @@ export default function Homepage() {
               className="relative shrink-0 -mt-6"
             >
               <Link href="/shop" className="block group">
-                <div className="relative w-28 h-36 sm:w-36 sm:h-48 md:w-48 md:h-64 rounded-3xl overflow-hidden border border-emerald-400/30 bg-white/[0.05] backdrop-blur-sm shadow-[0_12px_60px_rgba(52,211,153,0.25)]">
+                <div className="relative w-24 h-32 sm:w-36 sm:h-48 md:w-48 md:h-64 rounded-3xl overflow-hidden border border-emerald-400/30 bg-white/[0.05] backdrop-blur-sm shadow-[0_12px_60px_rgba(52,211,153,0.25)]">
                   <Image
                     src={displayProducts[1]?.images?.[0] || "https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=400&auto=format&fit=crop"}
                     alt={displayProducts[1]?.name || "Organic Grains"}
@@ -496,7 +496,7 @@ export default function Homepage() {
               style={{ transform: "rotate(6deg)" }}
             >
               <Link href="/shop" className="block group">
-                <div className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-violet-400/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(167,139,250,0.2)]">
+                <div className="relative w-20 h-28 sm:w-32 sm:h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-violet-400/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(167,139,250,0.2)]">
                   <Image
                     src={displayProducts[2]?.images?.[0] || "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?q=80&w=400&auto=format&fit=crop"}
                     alt={displayProducts[2]?.name || "Tri-Colour Quinoa"}
@@ -595,10 +595,10 @@ export default function Homepage() {
             <div className="h-px w-12 bg-[#5a7a00]" />
             <span className="text-[#5a7a00] text-sm font-semibold uppercase tracking-widest">Categories</span>
           </div>
-          <h2 className="font-syne text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 className="font-syne text-3xl md:text-5xl font-black text-white mb-4">
             Shop by Category
           </h2>
-          <p className="text-white/50 text-lg max-w-lg">
+          <p className="text-white/50 text-base md:text-lg max-w-lg">
             From aromatic spices to wholesome grains — everything your pantry needs.
           </p>
         </motion.div>
@@ -629,9 +629,9 @@ export default function Homepage() {
                 {/* Hover shimmer */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#C8F04B]/0 to-[#C8F04B]/0 group-hover:from-[#C8F04B]/10 group-hover:to-transparent transition-all duration-500" />
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 p-5">
-                  <h3 className="font-syne text-xl font-bold text-white">{cat.name}</h3>
-                  <p className="text-white/60 text-sm mt-1 group-hover:text-[#C8F04B] transition-colors">
+                <div className="absolute bottom-0 left-0 p-3 sm:p-5">
+                  <h3 className="font-syne text-sm sm:text-xl font-bold text-white leading-tight">{cat.name}</h3>
+                  <p className="text-white/60 text-xs sm:text-sm mt-0.5 sm:mt-1 group-hover:text-[#C8F04B] transition-colors">
                     Explore →
                   </p>
                 </div>
@@ -660,7 +660,7 @@ export default function Homepage() {
                 <div className="h-px w-12 bg-[#5a7a00]" />
                 <span className="text-[#5a7a00] text-sm font-semibold uppercase tracking-widest">Featured</span>
               </div>
-              <h2 className="font-syne text-4xl md:text-5xl font-black text-white">
+              <h2 className="font-syne text-3xl md:text-5xl font-black text-white">
                 Staff Picks
               </h2>
             </div>
@@ -714,10 +714,10 @@ export default function Homepage() {
               <span className="text-[#C8F04B] text-sm font-semibold uppercase tracking-widest">Why Choose Us</span>
               <div className="h-px w-12 bg-[#C8F04B]" />
             </div>
-            <h2 className="font-syne text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="font-syne text-3xl md:text-5xl font-black text-white mb-4">
               Built Around Quality
             </h2>
-            <p className="text-white/50 text-lg max-w-lg mx-auto">
+            <p className="text-white/50 text-base md:text-lg max-w-lg mx-auto">
               Every decision we make starts and ends with your experience.
             </p>
           </motion.div>
@@ -759,7 +759,7 @@ export default function Homepage() {
               <span className="text-[#C8F04B] text-sm font-semibold uppercase tracking-widest">The Numbers</span>
               <div className="h-px w-12 bg-[#C8F04B]" />
             </div>
-            <h2 className="font-syne text-4xl md:text-5xl font-black text-white">
+            <h2 className="font-syne text-3xl md:text-5xl font-black text-white">
               Why Legends Choose Us
             </h2>
           </motion.div>
@@ -800,10 +800,10 @@ export default function Homepage() {
               <span className="text-[#C8F04B] text-sm font-semibold uppercase tracking-widest">Testimonials</span>
               <div className="h-px w-12 bg-[#C8F04B]" />
             </div>
-            <h2 className="font-syne text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="font-syne text-3xl md:text-5xl font-black text-white mb-4">
               Legends Love It
             </h2>
-            <p className="text-white/50 text-lg">
+            <p className="text-white/50 text-base md:text-lg">
               Don&apos;t just take our word for it.
             </p>
           </motion.div>
@@ -818,7 +818,7 @@ export default function Homepage() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -40 }}
                   transition={{ duration: 0.5, ease: EASE }}
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-3xl p-8 md:p-12 backdrop-blur-xl text-center"
+                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-3xl p-5 sm:p-8 md:p-12 backdrop-blur-xl text-center"
                 >
                   {/* Stars */}
                   <div className="flex justify-center gap-1 mb-6">
@@ -827,8 +827,8 @@ export default function Homepage() {
                     ))}
                   </div>
                   {/* Quote mark */}
-                  <div className="text-[#C8F04B]/20 text-8xl font-serif leading-none mb-2 select-none">&ldquo;</div>
-                  <p className="text-white/80 text-lg md:text-xl leading-relaxed mb-8 -mt-6">
+                  <div className="text-[#C8F04B]/20 text-6xl md:text-8xl font-serif leading-none mb-2 select-none">&ldquo;</div>
+                  <p className="text-white/80 text-base md:text-xl leading-relaxed mb-6 md:mb-8 -mt-4 md:-mt-6">
                     {displayReviews[activeReview]?.body}
                   </p>
                   <div className="flex items-center justify-center gap-3">
@@ -909,7 +909,7 @@ export default function Homepage() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#C8F04B] animate-pulse" />
               <span className="text-[#C8F04B] text-sm font-bold">Limited Time Offer</span>
             </div>
-            <h2 className="font-syne text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+            <h2 className="font-syne text-2xl sm:text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
               Use code{" "}
               <span className="bg-gradient-to-r from-[#C8F04B] to-[#86EFAC] bg-clip-text text-transparent">
                 WELCOME10
@@ -917,7 +917,7 @@ export default function Homepage() {
               <br />
               for 10% off your first order
             </h2>
-            <p className="text-white/50 text-lg mb-8">
+            <p className="text-white/50 text-sm sm:text-base md:text-lg mb-8">
               Discover our full range of premium pantry essentials and taste the difference.
             </p>
             <Link
@@ -968,10 +968,10 @@ export default function Homepage() {
               ✉️
             </motion.div>
 
-            <h2 className="font-syne text-4xl md:text-5xl font-black text-white mb-4">
+            <h2 className="font-syne text-3xl md:text-5xl font-black text-white mb-4">
               Stay in the Loop
             </h2>
-            <p className="text-white/50 text-lg mb-8 leading-relaxed">
+            <p className="text-white/50 text-base md:text-lg mb-8 leading-relaxed">
               Get weekly recipes, new arrivals, and exclusive offers straight to your inbox.
               No spam, ever.
             </p>

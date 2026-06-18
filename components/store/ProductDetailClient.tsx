@@ -54,7 +54,7 @@ export function ProductDetailClient({ product }: { product: any }) {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-16">
+    <div className="container mx-auto px-4 py-6 md:py-16">
       {/* Breadcrumb */}
       <nav className="mb-8 flex items-center gap-2 text-sm text-white/50">
         <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -125,7 +125,7 @@ export function ProductDetailClient({ product }: { product: any }) {
             </Link>
           )}
 
-          <h1 className="font-syne text-4xl font-black leading-tight text-white md:text-5xl">
+          <h1 className="font-syne text-2xl sm:text-3xl font-black leading-tight text-white md:text-5xl">
             {product.name}
           </h1>
 
@@ -142,7 +142,7 @@ export function ProductDetailClient({ product }: { product: any }) {
 
           {/* Price */}
           <div className="flex items-baseline gap-3">
-            <span className="font-syne text-4xl font-black text-[#C8F04B]">{formatCurrency(price)}</span>
+            <span className="font-syne text-2xl sm:text-3xl md:text-4xl font-black text-[#C8F04B]">{formatCurrency(price)}</span>
             {product.compare_price && (
               <span className="text-xl text-white/25 line-through">{formatCurrency(product.compare_price)}</span>
             )}

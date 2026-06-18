@@ -9,7 +9,7 @@ const EASE: [number, number, number, number] = [0.25, 0.4, 0.25, 1]
 export function HeroSection() {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#1a2433] px-4 py-32 lg:py-44"
+      className="relative isolate overflow-hidden bg-[#1a2433] px-4 py-20 sm:py-28 lg:py-44"
       style={{
         backgroundImage: "url('/2.jpg')",
         backgroundSize: "cover",
@@ -65,7 +65,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.32, duration: 0.7 }}
-          className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/55"
+          className="mx-auto mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-white/55"
         >
           Hand-sourced from artisan producers across 40+ countries.
           Delivered fresh to your door.
@@ -76,7 +76,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.48, duration: 0.6 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-7 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
         >
           <Link
             href="/shop?sort=newest"
