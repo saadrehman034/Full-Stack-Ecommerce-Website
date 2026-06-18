@@ -18,7 +18,7 @@ export function HeroSection() {
       }}
     >
       {/* Mid-tone overlay — lets image show through at ~45% */}
-      <div className="absolute inset-0 bg-[#060810]/65" />
+      <div className="absolute inset-0 bg-[#060810]/50" />
       {/* Lime tint at bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#C8F04B]/10 via-transparent to-transparent" />
 
