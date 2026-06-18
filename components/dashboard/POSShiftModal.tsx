@@ -135,11 +135,11 @@ export function POSShiftModal({
           {/* Cash input */}
           <div className="mb-5">
             <label className="block text-[#555] text-xs uppercase tracking-wider mb-2">
-              {mode === "open" ? "Opening Cash Float (£)" : "Closing Cash Count (£)"}
+              {mode === "open" ? "Opening Cash Float ($)" : "Closing Cash Count ($)"}
             </label>
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#555] text-xl font-bold">
-                £
+                $
               </span>
               <input
                 type="number"

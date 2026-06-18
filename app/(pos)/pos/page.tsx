@@ -196,19 +196,19 @@ export default function POSPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#0A0A0A] px-4">
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-sm rounded-3xl bg-white p-8 shadow-2xl">
+          className="w-full max-w-sm rounded-3xl bg-[#111] border border-[#1E1E1E] p-8 shadow-2xl">
           <div className="mb-6 text-center">
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
               <Clock className="h-7 w-7 text-primary" />
             </div>
-            <h2 className="font-syne text-2xl font-bold">Open Shift</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Enter your opening cash float</p>
+            <h2 className="font-syne text-2xl font-bold text-white">Open Shift</h2>
+            <p className="mt-1 text-sm text-white/50">Enter your opening cash float</p>
           </div>
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium">Opening Cash (£)</label>
+              <label className="text-sm font-medium text-white/70">Opening Cash ($)</label>
               <input value={openingCash} onChange={e => setOpeningCash(e.target.value)} type="number" step="0.01" placeholder="0.00"
-                className="mt-1.5 h-12 w-full rounded-xl border border-border bg-background px-4 text-lg font-bold outline-none focus:ring-2 focus:ring-ring" />
+                className="mt-1.5 h-12 w-full rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] px-4 text-lg font-bold text-white outline-none focus:ring-2 focus:ring-primary placeholder:text-white/20" />
             </div>
             <button onClick={openShift}
               className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary font-semibold text-primary-foreground transition-transform hover:scale-[1.01]">
@@ -455,10 +455,10 @@ export default function POSPage() {
               <div className="space-y-4">
                 <div className="rounded-xl bg-muted/40 p-4 text-sm space-y-2">
                   <p className="text-muted-foreground">Shift started: <span className="font-medium text-foreground">{session && new Date(session.openedAt).toLocaleTimeString()}</span></p>
-                  <p className="text-muted-foreground">Opening cash: <span className="font-medium text-foreground">£{session?.openingCash.toFixed(2)}</span></p>
+                  <p className="text-muted-foreground">Opening cash: <span className="font-medium text-foreground">${session?.openingCash.toFixed(2)}</span></p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Closing Cash (£)</label>
+                  <label className="text-sm font-medium">Closing Cash ($)</label>
                   <input type="number" step="0.01" value={closingCash} onChange={e => setClosingCash(e.target.value)} placeholder="0.00"
                     className="mt-1.5 h-11 w-full rounded-xl border border-border px-4 outline-none focus:ring-2 focus:ring-ring" />
                 </div>
