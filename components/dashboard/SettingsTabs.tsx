@@ -83,8 +83,8 @@ export function SettingsTabs({ initialSettings }: Props) {
     email: storeInit.email ?? "",
     phone: storeInit.phone ?? "",
     address: storeInit.address ?? "",
-    currency: storeInit.currency ?? "GBP",
-    currency_symbol: storeInit.currency_symbol ?? "£",
+    currency: storeInit.currency ?? "USD",
+    currency_symbol: storeInit.currency_symbol ?? "$",
   });
 
   // ---- Tax ----

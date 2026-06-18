@@ -133,7 +133,7 @@ export function RevenueByCategoryChart({
             <Tooltip
               contentStyle={tooltipStyle}
               formatter={(val) =>
-                new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(Number(val ?? 0))
+                new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(Number(val ?? 0))
               }
             />
           </PieChart>
@@ -148,7 +148,7 @@ export function RevenueByCategoryChart({
             />
             <span className="text-sm text-[#A0A0A0] flex-1 truncate">{item.name}</span>
             <span className="text-sm text-white font-semibold">
-              {new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(item.revenue)}
+              {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(item.revenue)}
             </span>
           </div>
         ))}

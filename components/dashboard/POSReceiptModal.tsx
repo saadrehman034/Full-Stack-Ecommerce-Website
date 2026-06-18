@@ -83,7 +83,7 @@ export function POSReceiptModal({ order, onClose }: POSReceiptModalProps) {
               <div className="flex justify-between text-xs">
                 <span className="text-[#555]">Date</span>
                 <span className="text-white print:text-black">
-                  {new Date(order.created_at).toLocaleString("en-GB", {
+                  {new Date(order.created_at).toLocaleString("en-US", {
                     day: "numeric",
                     month: "short",
                     year: "numeric",

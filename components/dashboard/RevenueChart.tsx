@@ -38,14 +38,14 @@ function formatXAxisTick(value: string, period: Period): string {
   if (period === "1y") {
     const [year, month] = value.split("-");
     const d = new Date(Number(year), Number(month) - 1, 1);
-    return d.toLocaleString("en-GB", { month: "short" });
+    return d.toLocaleString("en-US", { month: "short" });
   }
   if (period === "90d") {
     const d = new Date(value);
-    return d.toLocaleString("en-GB", { day: "numeric", month: "short" });
+    return d.toLocaleString("en-US", { day: "numeric", month: "short" });
   }
   const d = new Date(value);
-  return d.toLocaleString("en-GB", { day: "numeric", month: "short" });
+  return d.toLocaleString("en-US", { day: "numeric", month: "short" });
 }
 
 function CustomTooltip({
@@ -66,13 +66,13 @@ function CustomTooltip({
     if (period === "1y") {
       const [year, month] = label.split("-");
       const d = new Date(Number(year), Number(month) - 1, 1);
-      displayDate = d.toLocaleString("en-GB", { month: "long", year: "numeric" });
+      displayDate = d.toLocaleString("en-US", { month: "long", year: "numeric" });
     } else if (period === "90d") {
       const d = new Date(label);
-      displayDate = `Week of ${d.toLocaleString("en-GB", { day: "numeric", month: "short" })}`;
+      displayDate = `Week of ${d.toLocaleString("en-US", { day: "numeric", month: "short" })}`;
     } else {
       const d = new Date(label);
-      displayDate = d.toLocaleString("en-GB", { day: "numeric", month: "long" });
+      displayDate = d.toLocaleString("en-US", { day: "numeric", month: "long" });
     }
   } catch {
     displayDate = label;

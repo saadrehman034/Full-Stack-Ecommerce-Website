@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     const lineItems = items.map((item: any) => ({
       price_data: {
-        currency: "gbp",
+        currency: "usd",
         product_data: {
           name: item.name,
           images: item.image ? [item.image] : [],

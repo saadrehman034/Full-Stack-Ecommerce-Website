@@ -30,7 +30,7 @@ serve(async (req) => {
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: serverTotalCents,
-      currency: "gbp",
+      currency: "usd",
       automatic_payment_methods: { enabled: true },
       metadata: {
         order_id: orderId,

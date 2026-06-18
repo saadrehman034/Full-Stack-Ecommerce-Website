@@ -89,12 +89,12 @@ export default async function AdminStaffPage() {
                 {sessions.map((s: any) => (
                   <tr key={s.id} className="border-b border-border/20 hover:bg-muted/30">
                     <td className="px-4 py-3 font-medium">{s.users?.full_name || "—"}</td>
-                    <td className="px-4 py-3 text-muted-foreground">{new Date(s.opened_at).toLocaleString("en-GB")}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{new Date(s.opened_at).toLocaleString("en-US")}</td>
                     <td className="px-4 py-3 text-muted-foreground">
-                      {s.closed_at ? new Date(s.closed_at).toLocaleString("en-GB") : <span className="text-green-600 font-medium">Open</span>}
+                      {s.closed_at ? new Date(s.closed_at).toLocaleString("en-US") : <span className="text-green-600 font-medium">Open</span>}
                     </td>
-                    <td className="px-4 py-3">£{s.opening_cash?.toFixed(2)}</td>
-                    <td className="px-4 py-3">{s.closing_cash ? `£${s.closing_cash.toFixed(2)}` : "—"}</td>
+                    <td className="px-4 py-3">${s.opening_cash?.toFixed(2)}</td>
+                    <td className="px-4 py-3">{s.closing_cash ? `$${s.closing_cash.toFixed(2)}` : "—"}</td>
                   </tr>
                 ))}
               </tbody>
