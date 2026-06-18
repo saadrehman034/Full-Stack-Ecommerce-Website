@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase/server"
 import { NextRequest, NextResponse } from "next/server"
 
+export const dynamic = "force-dynamic";
+
 // GET — fetch open session for current user
 export async function GET() {
   try {

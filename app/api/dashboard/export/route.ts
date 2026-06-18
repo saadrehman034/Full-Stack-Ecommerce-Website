@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 function escapeCsv(value: unknown): string {
   if (value === null || value === undefined) return "";
   const str = String(value);
