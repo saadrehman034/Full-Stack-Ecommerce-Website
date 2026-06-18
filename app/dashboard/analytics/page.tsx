@@ -142,7 +142,7 @@ export default async function AnalyticsPage() {
   const cityMap: Record<string, { orders: number; revenue: number }> = {};
   orders.forEach((o) => {
     const city =
-      (o.shipping_address as { city?: string } | null)?.city ?? "Unknown";
+      (o.shipping_address as unknown as { city?: string } | null)?.city ?? "Unknown";
     if (!cityMap[city]) cityMap[city] = { orders: 0, revenue: 0 };
     cityMap[city].orders++;
     cityMap[city].revenue += o.total_amount ?? 0;

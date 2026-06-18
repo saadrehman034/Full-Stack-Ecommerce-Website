@@ -42,7 +42,7 @@ export default async function RevenuePage() {
   const productMap: Record<string, { id: string; name: string; sku: string; revenue: number; units: number }> = {};
 
   for (const item of orderItemsRes.data ?? []) {
-    const prod = item.products as {
+    const prod = item.products as unknown as {
       id: string; name: string; sku: string; category_id: string;
       categories: { name: string } | null;
     } | null;

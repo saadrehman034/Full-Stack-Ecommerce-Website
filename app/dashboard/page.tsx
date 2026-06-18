@@ -420,7 +420,7 @@ export default async function DashboardPage() {
   // Top products
   const productMap: Record<string, TopProduct> = {};
   for (const item of topProductsRes.data ?? []) {
-    const prod = item.products as { id: string; name: string; sku: string; images: string[] } | null;
+    const prod = item.products as unknown as { id: string; name: string; sku: string; images: string[] } | null;
     if (!prod) continue;
     if (!productMap[item.product_id]) {
       productMap[item.product_id] = { id: prod.id, name: prod.name, sku: prod.sku, image: prod.images?.[0] ?? "", revenue: 0, units: 0 };

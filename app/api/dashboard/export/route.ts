@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
         "Total", "Payment Status", "Order Status", "Source",
       ];
       const rows = (data ?? []).map((o) => {
-        const user = o.users as { full_name: string; email: string } | null;
+        const user = o.users as unknown as { full_name: string; email: string } | null;
         return [
           o.order_number,
           new Date(o.created_at).toLocaleDateString("en-GB"),
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
 
       const headers = ["Name", "SKU", "Price", "Stock", "Category", "Active"];
       const rows = (data ?? []).map((p) => {
-        const cat = p.categories as { name: string } | null;
+        const cat = p.categories as unknown as { name: string } | null;
         return [
           p.name,
           p.sku ?? "",
