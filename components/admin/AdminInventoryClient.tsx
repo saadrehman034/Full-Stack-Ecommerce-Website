@@ -65,7 +65,7 @@ export function AdminInventoryClient({ products, logs }: { products: Product[]; 
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border/40">
-                {["Product", "SKU", "Stock", "Threshold", "Status", ""].map(h => (
+                {["Product", "SKU", "Quantity", "Threshold", "Status", ""].map(h => (
                   <th key={h} className="px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{h}</th>
                 ))}
               </tr>
@@ -77,7 +77,7 @@ export function AdminInventoryClient({ products, logs }: { products: Product[]; 
                   <tr key={p.id} className="border-b border-border/20 hover:bg-muted/30">
                     <td className="px-4 py-3 font-medium">{p.name}</td>
                     <td className="px-4 py-3 font-mono text-xs text-muted-foreground">{p.sku}</td>
-                    <td className="px-4 py-3 font-bold">{p.stock_quantity} {p.unit}</td>
+                    <td className="px-4 py-3 font-bold">{Math.floor(p.stock_quantity)}</td>
                     <td className="px-4 py-3 text-muted-foreground">{p.low_stock_threshold}</td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${status === "out" ? "bg-red-100 text-red-700" : status === "low" ? "bg-amber-100 text-amber-700" : "bg-green-100 text-green-700"}`}>
@@ -140,7 +140,7 @@ export function AdminInventoryClient({ products, logs }: { products: Product[]; 
               <div className="space-y-4">
                 <div>
                   <p className="font-semibold">{adjustProduct.name}</p>
-                  <p className="text-sm text-muted-foreground">Current stock: {adjustProduct.stock_quantity} {adjustProduct.unit}</p>
+                  <p className="text-sm text-muted-foreground">Current stock: {Math.floor(adjustProduct.stock_quantity)}</p>
                 </div>
                 <div>
                   <label className="text-sm font-medium">Change Amount (+ to add, - to remove)</label>
