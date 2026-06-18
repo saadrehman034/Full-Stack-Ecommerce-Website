@@ -39,9 +39,9 @@ export default async function AdminOrdersPage({
   const STATUSES = ["pending", "confirmed", "packing", "shipped", "delivered", "cancelled", "refunded"];
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-8 space-y-5 md:space-y-6">
       <div>
-        <h1 className="font-syne text-3xl font-bold">Orders</h1>
+        <h1 className="font-syne text-2xl md:text-3xl font-bold">Orders</h1>
         <p className="mt-1 text-sm text-muted-foreground">{count || 0} total orders</p>
       </div>
 

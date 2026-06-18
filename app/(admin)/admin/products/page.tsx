@@ -28,10 +28,10 @@ export default async function AdminProductsPage({
   const { data: categories } = await supabase.from("categories").select("id, name, slug").eq("is_active", true);
 
   return (
-    <div className="p-8 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-4 md:p-8 space-y-5 md:space-y-6">
+      <div className="flex items-center justify-between gap-3">
         <div>
-          <h1 className="font-syne text-3xl font-bold">Products</h1>
+          <h1 className="font-syne text-2xl md:text-3xl font-bold">Products</h1>
           <p className="mt-1 text-sm text-muted-foreground">{products?.length || 0} products</p>
         </div>
         <Link href="/admin/products/new"
@@ -41,24 +41,22 @@ export default async function AdminProductsPage({
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3">
-        <form method="get" action="/admin/products" className="flex gap-2">
-          <input name="q" defaultValue={searchParams.q} placeholder="Search products…"
-            className="h-9 rounded-xl border border-border bg-white px-4 text-sm outline-none focus:ring-2 focus:ring-ring dark:bg-[#111]" />
-          <select name="category" defaultValue={searchParams.category}
-            className="h-9 rounded-xl border border-border bg-white px-3 text-sm outline-none dark:bg-[#111]">
-            <option value="">All Categories</option>
-            {(categories || []).map(c => <option key={c.id} value={c.slug}>{c.name}</option>)}
-          </select>
-          <select name="stock" defaultValue={searchParams.stock}
-            className="h-9 rounded-xl border border-border bg-white px-3 text-sm outline-none dark:bg-[#111]">
-            <option value="">All Stock</option>
-            <option value="low">Low Stock (≤5)</option>
-            <option value="out">Out of Stock</option>
-          </select>
-          <button type="submit" className="h-9 rounded-xl bg-muted px-4 text-sm font-medium hover:bg-muted/70">Filter</button>
-        </form>
-      </div>
+      <form method="get" action="/admin/products" className="flex flex-wrap gap-2">
+        <input name="q" defaultValue={searchParams.q} placeholder="Search products…"
+          className="h-9 min-w-0 flex-1 rounded-xl border border-border bg-white px-4 text-sm outline-none focus:ring-2 focus:ring-ring dark:bg-[#111]" />
+        <select name="category" defaultValue={searchParams.category}
+          className="h-9 rounded-xl border border-border bg-white px-3 text-sm outline-none dark:bg-[#111]">
+          <option value="">All Categories</option>
+          {(categories || []).map(c => <option key={c.id} value={c.slug}>{c.name}</option>)}
+        </select>
+        <select name="stock" defaultValue={searchParams.stock}
+          className="h-9 rounded-xl border border-border bg-white px-3 text-sm outline-none dark:bg-[#111]">
+          <option value="">All Stock</option>
+          <option value="low">Low Stock (≤5)</option>
+          <option value="out">Out of Stock</option>
+        </select>
+        <button type="submit" className="h-9 rounded-xl bg-muted px-4 text-sm font-medium hover:bg-muted/70">Filter</button>
+      </form>
 
       <div className="rounded-2xl bg-white shadow-sm ring-1 ring-border/30 dark:bg-[#111] overflow-x-auto">
         {!products?.length ? (

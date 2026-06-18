@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import { createClient } from "@/lib/supabase/server";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { Users } from "lucide-react";
 
@@ -28,9 +28,9 @@ export default async function AdminCustomersPage() {
   });
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-8 space-y-5 md:space-y-6">
       <div>
-        <h1 className="font-syne text-3xl font-bold">Customers</h1>
+        <h1 className="font-syne text-2xl md:text-3xl font-bold">Customers</h1>
         <p className="mt-1 text-sm text-muted-foreground">{customers?.length || 0} registered customers</p>
       </div>
 
@@ -64,7 +64,7 @@ export default async function AdminCustomersPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground">{c.phone || "—"}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{c.phone || "â€”"}</td>
                     <td className="px-4 py-3 font-semibold">{stats.count}</td>
                     <td className="px-4 py-3 font-semibold">{formatCurrency(stats.total)}</td>
                     <td className="px-4 py-3 text-muted-foreground">{formatDate(c.created_at)}</td>
@@ -78,3 +78,4 @@ export default async function AdminCustomersPage() {
     </div>
   );
 }
+

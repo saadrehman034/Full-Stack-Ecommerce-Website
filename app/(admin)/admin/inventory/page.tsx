@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import { createClient } from "@/lib/supabase/server";
 import { AdminInventoryClient } from "@/components/admin/AdminInventoryClient";
 
 export const revalidate = 30;
@@ -19,12 +19,13 @@ export default async function AdminInventoryPage() {
     .limit(50);
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-8 space-y-5 md:space-y-6">
       <div>
-        <h1 className="font-syne text-3xl font-bold">Inventory</h1>
+        <h1 className="font-syne text-2xl md:text-3xl font-bold">Inventory</h1>
         <p className="mt-1 text-sm text-muted-foreground">Stock levels and adjustment history.</p>
       </div>
       <AdminInventoryClient products={products || []} logs={logs || []} />
     </div>
   );
 }
+

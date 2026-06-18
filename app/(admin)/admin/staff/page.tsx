@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import { createClient } from "@/lib/supabase/server";
 import { formatDate } from "@/lib/utils";
 import { UserCheck } from "lucide-react";
 
@@ -20,9 +20,9 @@ export default async function AdminStaffPage() {
     .limit(20);
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8">
       <div>
-        <h1 className="font-syne text-3xl font-bold">Staff</h1>
+        <h1 className="font-syne text-2xl md:text-3xl font-bold">Staff</h1>
         <p className="mt-1 text-sm text-muted-foreground">Manage team members and view shift history.</p>
       </div>
 
@@ -52,7 +52,7 @@ export default async function AdminStaffPage() {
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
                           {(s.full_name || "S")[0].toUpperCase()}
                         </div>
-                        <p className="font-semibold">{s.full_name || "—"}</p>
+                        <p className="font-semibold">{s.full_name || "â€”"}</p>
                       </div>
                     </td>
                     <td className="px-4 py-3">
@@ -60,7 +60,7 @@ export default async function AdminStaffPage() {
                         {s.role}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground">{s.phone || "—"}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{s.phone || "â€”"}</td>
                     <td className="px-4 py-3 text-muted-foreground">{formatDate(s.created_at)}</td>
                   </tr>
                 ))}
@@ -88,13 +88,13 @@ export default async function AdminStaffPage() {
               <tbody>
                 {sessions.map((s: any) => (
                   <tr key={s.id} className="border-b border-border/20 hover:bg-muted/30">
-                    <td className="px-4 py-3 font-medium">{s.users?.full_name || "—"}</td>
+                    <td className="px-4 py-3 font-medium">{s.users?.full_name || "â€”"}</td>
                     <td className="px-4 py-3 text-muted-foreground">{new Date(s.opened_at).toLocaleString("en-US")}</td>
                     <td className="px-4 py-3 text-muted-foreground">
                       {s.closed_at ? new Date(s.closed_at).toLocaleString("en-US") : <span className="text-green-600 font-medium">Open</span>}
                     </td>
                     <td className="px-4 py-3">${s.opening_cash?.toFixed(2)}</td>
-                    <td className="px-4 py-3">{s.closing_cash ? `$${s.closing_cash.toFixed(2)}` : "—"}</td>
+                    <td className="px-4 py-3">{s.closing_cash ? `$${s.closing_cash.toFixed(2)}` : "â€”"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -105,3 +105,4 @@ export default async function AdminStaffPage() {
     </div>
   );
 }
+

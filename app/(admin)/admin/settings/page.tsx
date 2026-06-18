@@ -25,9 +25,9 @@ export default function AdminSettingsPage() {
   };
 
   return (
-    <div className="p-8 space-y-8 max-w-2xl">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-2xl">
       <div>
-        <h1 className="font-syne text-3xl font-bold">Settings</h1>
+        <h1 className="font-syne text-2xl md:text-3xl font-bold">Settings</h1>
         <p className="mt-1 text-sm text-muted-foreground">Configure your store settings.</p>
       </div>
 

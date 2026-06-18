@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import { createClient } from "@/lib/supabase/server";
 import { formatCurrency } from "@/lib/utils";
 import { AdminReportsCharts } from "@/components/admin/AdminReportsCharts";
 
@@ -45,9 +45,9 @@ export default async function AdminReportsPage() {
   const totalRevenue = (orders || []).reduce((s, o) => s + (o.total_amount || 0), 0);
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8">
       <div>
-        <h1 className="font-syne text-3xl font-bold">Reports</h1>
+        <h1 className="font-syne text-2xl md:text-3xl font-bold">Reports</h1>
         <p className="mt-1 text-sm text-muted-foreground">Last 30 days performance.</p>
       </div>
 
@@ -69,3 +69,4 @@ export default async function AdminReportsPage() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import { createClient } from "@/lib/supabase/server";
 import { formatDate } from "@/lib/utils";
 import { Star } from "lucide-react";
 import { AdminReviewActions } from "@/components/admin/AdminReviewActions";
@@ -14,9 +14,9 @@ export default async function AdminReviewsPage() {
     .order("created_at", { ascending: false });
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-8 space-y-5 md:space-y-6">
       <div>
-        <h1 className="font-syne text-3xl font-bold">Reviews</h1>
+        <h1 className="font-syne text-2xl md:text-3xl font-bold">Reviews</h1>
         <p className="mt-1 text-sm text-muted-foreground">{reviews?.length || 0} reviews</p>
       </div>
 
@@ -35,7 +35,7 @@ export default async function AdminReviewsPage() {
             <tbody>
               {reviews.map((r: any) => (
                 <tr key={r.id} className="border-b border-border/20 hover:bg-muted/30">
-                  <td className="px-4 py-3 font-medium">{r.products?.name || "—"}</td>
+                  <td className="px-4 py-3 font-medium">{r.products?.name || "â€”"}</td>
                   <td className="px-4 py-3 text-muted-foreground">{r.users?.full_name || "Anonymous"}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-0.5">
@@ -45,7 +45,7 @@ export default async function AdminReviewsPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3 max-w-[240px]">
-                    <p className="line-clamp-2 text-sm text-muted-foreground">{r.body || "—"}</p>
+                    <p className="line-clamp-2 text-sm text-muted-foreground">{r.body || "â€”"}</p>
                   </td>
                   <td className="px-4 py-3 text-xs text-muted-foreground whitespace-nowrap">{formatDate(r.created_at)}</td>
                   <td className="px-4 py-3">
@@ -67,3 +67,4 @@ export default async function AdminReviewsPage() {
     </div>
   );
 }
+

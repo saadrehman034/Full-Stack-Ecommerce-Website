@@ -48,6 +48,7 @@ export default function POSPage() {
   const [openingCash, setOpeningCash] = useState("");
   const [closingCash, setClosingCash] = useState("");
   const [discount, setDiscount] = useState(0);
+  const [mobileTab, setMobileTab] = useState<"products" | "order">("products");
   const [taxEnabled, setTaxEnabled] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
   const [cashReceived, setCashReceived] = useState("");
@@ -228,30 +229,31 @@ export default function POSPage() {
   return (
     <div className="flex h-screen flex-col bg-[#F5F5F5] dark:bg-[#0A0A0A] overflow-hidden">
       {/* Top Bar */}
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-[#1E1E1E] bg-[#111] px-4">
-        <div className="flex items-center gap-3">
-          <span className="font-syne text-lg font-bold text-white">PantryLegend POS</span>
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-[#1E1E1E] bg-[#111] px-3 md:px-4">
+        <div className="flex items-center gap-2">
+          <span className="font-syne text-base font-bold text-white hidden sm:inline">PantryLegend POS</span>
+          <span className="font-syne text-sm font-bold text-white sm:hidden">POS</span>
           {session && (
-            <span className="rounded-full bg-[#C8F04B]/15 px-3 py-0.5 text-xs font-medium text-[#C8F04B]">
-              Shift open · {new Date(session.openedAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
+            <span className="rounded-full bg-[#C8F04B]/15 px-2 py-0.5 text-[11px] font-medium text-[#C8F04B]">
+              <span className="hidden sm:inline">Shift open · </span>{new Date(session.openedAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
             </span>
           )}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <button onClick={() => setShowHeld(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/15">
-            <PauseCircle className="h-3.5 w-3.5" /> Held ({heldOrders.length})
+            className="flex items-center gap-1 rounded-lg bg-white/10 px-2 py-1.5 text-xs font-medium text-white hover:bg-white/15">
+            <PauseCircle className="h-3.5 w-3.5" /> <span className="hidden sm:inline">Held</span> ({heldOrders.length})
           </button>
           <button onClick={() => setShowCloseShift(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/15">
-            <LogOut className="h-3.5 w-3.5" /> End Shift
+            className="flex items-center gap-1 rounded-lg bg-white/10 px-2 py-1.5 text-xs font-medium text-white hover:bg-white/15">
+            <LogOut className="h-3.5 w-3.5" /> <span className="hidden sm:inline">End Shift</span>
           </button>
         </div>
       </header>
 
       <div className="flex flex-1 overflow-hidden">
         {/* LEFT: Product browser */}
-        <div className="flex w-[58%] flex-col border-r border-border/40 bg-white dark:bg-[#111]">
+        <div className={`flex flex-col border-r border-border/40 bg-white dark:bg-[#111] ${mobileTab === "products" ? "flex" : "hidden"} md:flex md:w-[58%] w-full`}>
           {/* Search */}
           <div className="border-b border-border/40 p-3">
             <div className="relative">
@@ -285,7 +287,7 @@ export default function POSPage() {
                 <p className="text-sm text-muted-foreground">Try a different search or category.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-2 lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
                 {products.map((p) => (
                   <button key={p.id} onClick={() => { addItem({ product_id: p.id, name: p.name, price: p.price, image: p.images?.[0] || "", slug: p.slug }); }}
                     disabled={p.stock_quantity <= 0}
@@ -316,7 +318,7 @@ export default function POSPage() {
         </div>
 
         {/* RIGHT: Active order */}
-        <div className="flex w-[42%] flex-col bg-white dark:bg-[#111]">
+        <div className={`flex flex-col bg-white dark:bg-[#111] ${mobileTab === "order" ? "flex" : "hidden"} md:flex md:w-[42%] w-full`}>
           {/* Order header */}
           <div className="border-b border-border/40 p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -367,7 +369,7 @@ export default function POSPage() {
           </div>
 
           {/* Order footer */}
-          <div className="border-t border-border/40 p-4 space-y-3">
+          <div className="border-t border-border/40 p-3 md:p-4 space-y-3">
             {/* Discount */}
             <div className="flex items-center gap-2">
               <label className="text-xs font-medium text-muted-foreground shrink-0">Discount %</label>
@@ -408,6 +410,29 @@ export default function POSPage() {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Mobile tab bar */}
+      <div className="md:hidden flex shrink-0 border-t border-[#1E1E1E] bg-[#111]">
+        <button
+          onClick={() => setMobileTab("products")}
+          className={`flex flex-1 flex-col items-center gap-1 py-2.5 text-xs font-semibold transition-colors ${mobileTab === "products" ? "text-[#C8F04B]" : "text-white/40"}`}
+        >
+          <Search className="h-5 w-5" />
+          Products
+        </button>
+        <button
+          onClick={() => setMobileTab("order")}
+          className={`flex flex-1 flex-col items-center gap-1 py-2.5 text-xs font-semibold transition-colors relative ${mobileTab === "order" ? "text-[#C8F04B]" : "text-white/40"}`}
+        >
+          <ShoppingCart className="h-5 w-5" />
+          Order
+          {items.length > 0 && (
+            <span className="absolute top-1.5 right-1/4 h-4 w-4 rounded-full bg-[#C8F04B] text-[10px] font-black text-black flex items-center justify-center">
+              {items.length}
+            </span>
+          )}
+        </button>
       </div>
 
       {/* Cash payment modal */}
