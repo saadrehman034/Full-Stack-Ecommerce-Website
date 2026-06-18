@@ -20,6 +20,7 @@ const nextConfig = {
       { protocol: "https", hostname: "*.cloudinary.com" },
       { protocol: "https", hostname: "*.imgur.com" },
       { protocol: "https", hostname: "i.imgur.com" },
+      { protocol: "https", hostname: "images.pexels.com" },
     ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 86400,

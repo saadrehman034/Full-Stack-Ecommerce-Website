@@ -20,14 +20,14 @@ interface PageProps {
 }
 
 const FALLBACK_IMAGES: Record<string, string> = {
-  "candy-treats": "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?q=80&w=1600&auto=format&fit=crop",
-  "snacks-nuts": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1600&auto=format&fit=crop",
-  "beverages": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1600&auto=format&fit=crop",
-  "spreads-condiments": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d6?q=80&w=1600&auto=format&fit=crop",
-  "baking-essentials": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?q=80&w=1600&auto=format&fit=crop",
-  "household": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1600&auto=format&fit=crop",
-  "pet-supplies": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=1600&auto=format&fit=crop",
-  "electronics": "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1600&auto=format&fit=crop",
+  "candy-treats": "https://images.pexels.com/photos/16365469/pexels-photo-16365469.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "snacks-nuts": "https://images.pexels.com/photos/18153178/pexels-photo-18153178.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "beverages": "https://images.pexels.com/photos/32354655/pexels-photo-32354655.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "spreads-condiments": "https://images.pexels.com/photos/6659901/pexels-photo-6659901.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "baking-essentials": "https://images.pexels.com/photos/5441079/pexels-photo-5441079.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "household": "https://images.pexels.com/photos/5217897/pexels-photo-5217897.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "pet-supplies": "https://images.pexels.com/photos/8121154/pexels-photo-8121154.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  "electronics": "https://images.pexels.com/photos/5208781/pexels-photo-5208781.jpeg?auto=compress&cs=tinysrgb&w=1600",
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
