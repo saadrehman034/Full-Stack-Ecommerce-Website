@@ -54,12 +54,12 @@ interface Review {
 // ─── FALLBACK DATA ───────────────────────────────────────────────────────────
 
 const FALLBACK_CATEGORIES: Category[] = [
-  { id: "1", name: "Candy & Treats", slug: "candy-treats", image_url: "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?q=80&w=600&auto=format&fit=crop" },
-  { id: "2", name: "Snacks & Nuts", slug: "snacks-nuts", image_url: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600&auto=format&fit=crop" },
-  { id: "3", name: "Beverages", slug: "beverages", image_url: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop" },
-  { id: "4", name: "Spreads & Condiments", slug: "spreads-condiments", image_url: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d6?q=80&w=600&auto=format&fit=crop" },
-  { id: "5", name: "Baking Essentials", slug: "baking-essentials", image_url: "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?q=80&w=600&auto=format&fit=crop" },
-  { id: "6", name: "Household", slug: "household", image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=600&auto=format&fit=crop" },
+  { id: "1", name: "Candy & Treats", slug: "candy-treats", image_url: "https://images.pexels.com/photos/16365469/pexels-photo-16365469.jpeg?auto=compress&cs=tinysrgb&w=800" },
+  { id: "2", name: "Snacks & Nuts", slug: "snacks-nuts", image_url: "https://images.pexels.com/photos/18153178/pexels-photo-18153178.jpeg?auto=compress&cs=tinysrgb&w=800" },
+  { id: "3", name: "Beverages", slug: "beverages", image_url: "https://images.pexels.com/photos/32354655/pexels-photo-32354655.jpeg?auto=compress&cs=tinysrgb&w=800" },
+  { id: "4", name: "Spreads & Condiments", slug: "spreads-condiments", image_url: "https://images.pexels.com/photos/6659901/pexels-photo-6659901.jpeg?auto=compress&cs=tinysrgb&w=800" },
+  { id: "5", name: "Baking Essentials", slug: "baking-essentials", image_url: "https://images.pexels.com/photos/5441079/pexels-photo-5441079.jpeg?auto=compress&cs=tinysrgb&w=800" },
+  { id: "6", name: "Household", slug: "household", image_url: "https://images.pexels.com/photos/5217897/pexels-photo-5217897.jpeg?auto=compress&cs=tinysrgb&w=800" },
 ]
 
 const FALLBACK_PRODUCTS: Product[] = [
@@ -583,7 +583,11 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 3: FEATURED CATEGORIES ────────────────────────────── */}
-      <section ref={catRef} className="relative py-24 px-6 overflow-hidden">
+      <section ref={catRef} className="relative py-24 px-6 overflow-hidden bg-gradient-to-br from-indigo-950 via-purple-950/80 to-[#060810]">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] rounded-full bg-violet-600/20 blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-indigo-500/15 blur-[100px]" />
+        </div>
         <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -697,10 +701,12 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 5: BENEFITS / WHY US ──────────────────────────────── */}
-      <section ref={benefitsRef} className="relative isolate py-24 px-6 overflow-hidden">
+      <section ref={benefitsRef} className="relative isolate py-24 px-6 overflow-hidden bg-gradient-to-br from-emerald-950 via-teal-950/70 to-[#060810]">
         <div className="absolute inset-0 -z-10">
-          <Image src="/d.jpg" alt="" fill className="object-cover object-center" />
-          <div className="absolute inset-0 bg-[#060810]/50" />
+          <Image src="/d.jpg" alt="" fill className="object-cover object-center opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/40 via-teal-900/30 to-[#060810]/60" />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-emerald-500/15 blur-[120px]" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-teal-400/10 blur-[100px]" />
         </div>
         <div className="max-w-7xl mx-auto">
           <motion.div
