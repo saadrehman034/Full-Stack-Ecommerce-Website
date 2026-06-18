@@ -324,14 +324,14 @@ export default function Homepage() {
     <main className="min-h-screen bg-[#060810]">
 
       {/* ─── SECTION 1: HERO ──────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#060810]">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1a2433]">
         {/* Hero background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+          style={{ backgroundImage: "url('/2.jpg')" }}
         >
-          <div className="absolute inset-0 bg-[#060810]/75" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#C8F04B]/5 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[#1a2433]/38" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#C8F04B]/8 via-transparent to-transparent" />
         </div>
 
         {/* Animated gradient orbs on top of image */}
