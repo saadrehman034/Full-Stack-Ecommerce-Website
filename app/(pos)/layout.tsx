@@ -1,7 +1,17 @@
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
+
 export const metadata = {
   title: "PantryLegend POS",
 };
 
-export default function POSLayout({ children }: { children: React.ReactNode }) {
+export default async function POSLayout({ children }: { children: React.ReactNode }) {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
+
+  const { data: profile } = await supabase.from("users").select("role").eq("id", user.id).single();
+  if (profile?.role !== "admin") redirect("/");
+
   return <div className="h-screen overflow-hidden">{children}</div>;
 }
