@@ -9,18 +9,18 @@ const EASE: [number, number, number, number] = [0.25, 0.4, 0.25, 1]
 export function HeroSection() {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#060810] px-4 py-32 lg:py-44"
+      className="relative isolate overflow-hidden bg-[#2d3a4a] px-4 py-32 lg:py-44"
       style={{
-        backgroundImage: "url('/hero-bg.jpg')",
+        backgroundImage: "url('/2.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-[#060810]/72" />
+      {/* Mid-tone overlay — lets image show through at ~45% */}
+      <div className="absolute inset-0 bg-[#2d3a4a]/55" />
       {/* Lime tint at bottom */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#C8F04B]/8 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#C8F04B]/10 via-transparent to-transparent" />
 
       {/* Glow orbs */}
       <motion.div
