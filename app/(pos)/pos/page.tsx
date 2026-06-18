@@ -15,12 +15,14 @@ import { toast } from "sonner";
 
 const CATEGORY_MAP: Record<string, string> = {
   all: "All",
-  "spices-herbs": "Spices",
-  "grains-pulses": "Grains",
-  "oils-vinegars": "Oils",
+  "candy-treats": "Candy",
   "snacks-nuts": "Snacks",
   beverages: "Beverages",
+  "spreads-condiments": "Spreads",
   "baking-essentials": "Baking",
+  household: "Household",
+  "pet-supplies": "Pet",
+  electronics: "Electronics",
 };
 
 type Product = {
@@ -59,7 +61,7 @@ export default function POSPage() {
 
   const loadProducts = useCallback(async () => {
     setIsLoadingProducts(true);
-    let q = supabase.from("products").select("*, categories(name, slug)").eq("is_active", true);
+    let q = supabase.from("products").select("*, categories!inner(name, slug)").eq("is_active", true);
     if (activeCategory !== "all") q = q.eq("categories.slug", activeCategory);
     if (search) q = q.ilike("name", `%${search}%`);
     const { data } = await q.limit(60);
@@ -223,22 +225,22 @@ export default function POSPage() {
   return (
     <div className="flex h-screen flex-col bg-[#F5F5F5] dark:bg-[#0A0A0A] overflow-hidden">
       {/* Top Bar */}
-      <header className="flex h-14 shrink-0 items-center justify-between border-b border-border/40 bg-primary px-4">
+      <header className="flex h-14 shrink-0 items-center justify-between border-b border-[#1E1E1E] bg-[#111] px-4">
         <div className="flex items-center gap-3">
-          <span className="font-syne text-lg font-bold text-primary-foreground">PantryLegend POS</span>
+          <span className="font-syne text-lg font-bold text-white">PantryLegend POS</span>
           {session && (
-            <span className="rounded-full bg-primary-foreground/20 px-3 py-0.5 text-xs font-medium text-primary-foreground">
+            <span className="rounded-full bg-[#C8F04B]/15 border border-[#C8F04B]/30 px-3 py-0.5 text-xs font-medium text-[#C8F04B]">
               Shift open · {new Date(session.openedAt).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}
             </span>
           )}
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => setShowHeld(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-primary-foreground/20 px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary-foreground/30">
+            className="flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/15">
             <PauseCircle className="h-3.5 w-3.5" /> Held ({heldOrders.length})
           </button>
           <button onClick={() => setShowCloseShift(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-primary-foreground/20 px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary-foreground/30">
+            className="flex items-center gap-1.5 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/15">
             <LogOut className="h-3.5 w-3.5" /> End Shift
           </button>
         </div>
