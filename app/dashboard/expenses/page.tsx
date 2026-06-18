@@ -288,7 +288,7 @@ export default function ExpensesPage() {
                 }}
                 itemStyle={{ color: "#fff", fontSize: 12 }}
                 labelStyle={{ color: "#A0A0A0", fontSize: 11 }}
-                formatter={(v: number) => [formatCurrency(v), "Spent"]}
+                formatter={(v) => [formatCurrency(Number(v ?? 0)), "Spent"]}
               />
               <Bar dataKey="amount" radius={[6, 6, 0, 0]} maxBarSize={48}>
                 {categoryChartData.map((entry) => (

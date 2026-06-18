@@ -53,7 +53,7 @@ export function RevenueByCategoryChart({ data }: { data: CategoryData[] }) {
           }}
           itemStyle={{ color: "#fff", fontSize: 12 }}
           labelStyle={{ color: "#A0A0A0", fontSize: 11, marginBottom: 4 }}
-          formatter={(value: number) => [formatCurrency(value), "Revenue"]}
+          formatter={(value) => [formatCurrency(Number(value ?? 0)), "Revenue"]}
         />
         <Bar dataKey="revenue" radius={[0, 6, 6, 0]} maxBarSize={32}>
           {data.map((_, i) => (
