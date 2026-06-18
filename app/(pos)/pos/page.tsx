@@ -306,7 +306,7 @@ export default function POSPage() {
                     </div>
                     <div className="p-2">
                       <p className="line-clamp-2 text-[11px] font-semibold leading-tight">{p.name}</p>
-                      <p className="mt-0.5 font-syne text-sm font-bold text-primary">£{p.price.toFixed(2)}</p>
+                      <p className="mt-0.5 font-syne text-sm font-bold text-primary">${p.price.toFixed(2)}</p>
                     </div>
                   </button>
                 ))}
@@ -342,7 +342,7 @@ export default function POSPage() {
                     className="flex items-center gap-3 rounded-xl bg-muted/40 p-3">
                     <div className="flex-1 min-w-0">
                       <p className="truncate text-sm font-semibold">{item.name}</p>
-                      <p className="text-xs text-muted-foreground">£{item.price.toFixed(2)}</p>
+                      <p className="text-xs text-muted-foreground">${item.price.toFixed(2)}</p>
                     </div>
                     <div className="flex items-center gap-1">
                       <button onClick={() => { if (item.quantity > 1) { updateQuantity(item.product_id, item.quantity - 1); } else { removeItem(item.product_id); } }}
@@ -355,7 +355,7 @@ export default function POSPage() {
                         <Plus className="h-3 w-3" />
                       </button>
                     </div>
-                    <p className="w-16 text-right font-syne text-sm font-bold">£{(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="w-16 text-right font-syne text-sm font-bold">${(item.price * item.quantity).toFixed(2)}</p>
                     <button onClick={() => removeItem(item.product_id)}
                       className="text-muted-foreground hover:text-destructive">
                       <Trash2 className="h-3.5 w-3.5" />
@@ -382,11 +382,11 @@ export default function POSPage() {
 
             {/* Totals */}
             <div className="space-y-1.5 text-sm">
-              <div className="flex justify-between text-muted-foreground"><span>Subtotal</span><span>£{subtotal.toFixed(2)}</span></div>
-              {taxEnabled && <div className="flex justify-between text-muted-foreground"><span>Tax</span><span>£{taxAmount.toFixed(2)}</span></div>}
-              {discountAmount > 0 && <div className="flex justify-between text-green-600"><span>Discount ({discount}%)</span><span>-£{discountAmount.toFixed(2)}</span></div>}
+              <div className="flex justify-between text-muted-foreground"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+              {taxEnabled && <div className="flex justify-between text-muted-foreground"><span>Tax</span><span>${taxAmount.toFixed(2)}</span></div>}
+              {discountAmount > 0 && <div className="flex justify-between text-green-600"><span>Discount ({discount}%)</span><span>-${discountAmount.toFixed(2)}</span></div>}
               <div className="flex justify-between border-t border-border/40 pt-2 font-syne text-lg font-bold">
-                <span>Total</span><span>£{total.toFixed(2)}</span>
+                <span>Total</span><span>${total.toFixed(2)}</span>
               </div>
             </div>
 
@@ -423,10 +423,10 @@ export default function POSPage() {
               <div className="space-y-4">
                 <div>
                   <p className="text-sm text-muted-foreground">Total Due</p>
-                  <p className="font-syne text-4xl font-black text-primary">£{total.toFixed(2)}</p>
+                  <p className="font-syne text-4xl font-black text-primary">${total.toFixed(2)}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium">Cash Received (£)</label>
+                  <label className="text-sm font-medium">Cash Received ($)</label>
                   <input type="number" step="0.01" value={cashReceived} onChange={e => setCashReceived(e.target.value)}
                     placeholder="0.00" autoFocus
                     className="mt-1.5 h-12 w-full rounded-xl border border-border px-4 text-xl font-bold outline-none focus:ring-2 focus:ring-ring" />
@@ -434,7 +434,7 @@ export default function POSPage() {
                 {cashReceived && parseFloat(cashReceived) >= total && (
                   <div className="rounded-xl bg-green-50 p-4 text-center dark:bg-green-900/20">
                     <p className="text-sm text-green-700">Change Due</p>
-                    <p className="font-syne text-3xl font-black text-green-600">£{change.toFixed(2)}</p>
+                    <p className="font-syne text-3xl font-black text-green-600">${change.toFixed(2)}</p>
                   </div>
                 )}
                 <button onClick={() => placeOrder("cash")} disabled={!cashReceived || parseFloat(cashReceived) < total || isProcessing}
@@ -500,7 +500,7 @@ export default function POSPage() {
                   {heldOrders.map((o: any) => (
                     <div key={o.id} className="flex items-center justify-between rounded-xl bg-muted/40 p-4">
                       <div>
-                        <p className="font-semibold">{o.items.length} items · £{o.total?.toFixed(2)}</p>
+                        <p className="font-semibold">{o.items.length} items · ${o.total?.toFixed(2)}</p>
                         <p className="text-xs text-muted-foreground">{new Date(o.heldAt).toLocaleTimeString()}</p>
                       </div>
                       <div className="flex gap-2">
