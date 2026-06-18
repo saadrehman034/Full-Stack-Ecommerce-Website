@@ -290,7 +290,7 @@ async function ActivityFeedWidget() {
       sub: formatCurrency(o.total_amount ?? 0),
     })),
     ...(inventoryLogs ?? []).map((l) => {
-      const prod = l.products as { name: string } | null;
+      const prod = l.products as unknown as { name: string } | null;
       return {
         id: `inv-${l.id}`,
         time: l.created_at,
