@@ -182,7 +182,7 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
   }, [isInView, target])
 
   return (
-    <span ref={ref} className="font-syne text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent tabular-nums">
+    <span ref={ref} className="font-syne text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent tabular-nums">
       {count}{suffix}
     </span>
   )
@@ -373,7 +373,7 @@ export default function Homepage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: EASE }}
-            className="font-syne text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-6"
+            className="font-syne text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-6"
           >
             Stock Your Pantry
             <br />
@@ -387,7 +387,7 @@ export default function Homepage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-white/50 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed"
+            className="text-white/50 text-base md:text-xl max-w-xl mx-auto mb-10 leading-relaxed px-2"
           >
             Premium spices, grains, oils and pantry staples sourced from around the world.
             Delivered fresh to your door.
@@ -430,7 +430,7 @@ export default function Homepage() {
               style={{ transform: "rotate(-6deg)" }}
             >
               <Link href="/shop" className="block group">
-                <div className="relative w-32 h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-[#C8F04B]/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(200,240,75,0.2)]">
+                <div className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-[#C8F04B]/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(200,240,75,0.2)]">
                   <Image
                     src={displayProducts[0]?.images?.[0] || "https://images.unsplash.com/photo-1634900839777-df4c3c037d8a?q=80&w=400&auto=format&fit=crop"}
                     alt={displayProducts[0]?.name || "Premium Spice"}
@@ -463,7 +463,7 @@ export default function Homepage() {
               className="relative shrink-0 -mt-6"
             >
               <Link href="/shop" className="block group">
-                <div className="relative w-36 h-48 md:w-48 md:h-64 rounded-3xl overflow-hidden border border-emerald-400/30 bg-white/[0.05] backdrop-blur-sm shadow-[0_12px_60px_rgba(52,211,153,0.25)]">
+                <div className="relative w-28 h-36 sm:w-36 sm:h-48 md:w-48 md:h-64 rounded-3xl overflow-hidden border border-emerald-400/30 bg-white/[0.05] backdrop-blur-sm shadow-[0_12px_60px_rgba(52,211,153,0.25)]">
                   <Image
                     src={displayProducts[1]?.images?.[0] || "https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=400&auto=format&fit=crop"}
                     alt={displayProducts[1]?.name || "Organic Grains"}
@@ -496,7 +496,7 @@ export default function Homepage() {
               style={{ transform: "rotate(6deg)" }}
             >
               <Link href="/shop" className="block group">
-                <div className="relative w-32 h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-violet-400/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(167,139,250,0.2)]">
+                <div className="relative w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-52 rounded-2xl overflow-hidden border border-violet-400/25 bg-white/[0.05] backdrop-blur-sm shadow-[0_8px_40px_rgba(167,139,250,0.2)]">
                   <Image
                     src={displayProducts[2]?.images?.[0] || "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?q=80&w=400&auto=format&fit=crop"}
                     alt={displayProducts[2]?.name || "Tri-Colour Quinoa"}
@@ -583,7 +583,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 3: FEATURED CATEGORIES ────────────────────────────── */}
-      <section ref={catRef} className="relative py-24 px-6 overflow-hidden bg-[#0f1923]">
+      <section ref={catRef} className="relative py-16 md:py-24 px-4 md:px-6 overflow-hidden bg-[#0f1923]">
         <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -647,7 +647,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 4: FEATURED PRODUCTS ───────────────────────────────── */}
-      <section ref={prodRef} className="relative py-24 overflow-hidden bg-[#111c27]">
+      <section ref={prodRef} className="relative py-16 md:py-24 overflow-hidden bg-[#111c27]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -697,7 +697,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 5: BENEFITS / WHY US ──────────────────────────────── */}
-      <section ref={benefitsRef} className="relative isolate py-24 px-6 overflow-hidden">
+      <section ref={benefitsRef} className="relative isolate py-16 md:py-24 px-4 md:px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image src="/d.jpg" alt="" fill className="object-cover object-center" />
           <div className="absolute inset-0 bg-[#060810]/50" />
@@ -746,7 +746,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 6: ANIMATED STATS COUNTER ─────────────────────────── */}
-      <section ref={statsRef} className="relative py-24 overflow-hidden">
+      <section ref={statsRef} className="relative py-16 md:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -764,14 +764,14 @@ export default function Homepage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x-0 lg:divide-x divide-y lg:divide-y-0 divide-white/[0.06]">
             {STATS.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
                 animate={statsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.15, duration: 0.6 }}
-                className={`flex flex-col items-center text-center py-10 px-6 ${i < STATS.length - 1 ? "border-r border-white/[0.06]" : ""} ${i >= 2 ? "border-t border-white/[0.06] lg:border-t-0" : ""}`}
+                className="flex flex-col items-center text-center py-8 md:py-10 px-4 md:px-6"
               >
                 {statsInView && <CountUp target={stat.number} suffix={stat.suffix} />}
                 <p className="text-white/50 text-sm font-medium mt-3 uppercase tracking-wider">{stat.label}</p>
@@ -783,7 +783,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 7: TESTIMONIALS ────────────────────────────────────── */}
-      <section ref={reviewsRef} className="relative isolate py-24 px-6 overflow-hidden">
+      <section ref={reviewsRef} className="relative isolate py-16 md:py-24 px-4 md:px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image src="/5 (2).jpg" alt="" fill className="object-cover object-center" />
           <div className="absolute inset-0 bg-[#060810]/50" />
@@ -893,12 +893,12 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 8: PROMO BANNER ────────────────────────────────────── */}
-      <section ref={promoRef} className="relative py-20 overflow-hidden">
+      <section ref={promoRef} className="relative py-14 md:py-20 overflow-hidden">
         {/* Lime accent glow */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#C8F04B]/8 via-transparent to-emerald-500/5" />
         <div className="absolute right-0 top-0 w-[600px] h-[600px] bg-[#C8F04B]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4" />
 
-        <div className="relative max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="relative max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={promoInView ? { opacity: 1, x: 0 } : {}}
@@ -933,7 +933,7 @@ export default function Homepage() {
             initial={{ opacity: 0, x: 30 }}
             animate={promoInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-            className="grid grid-cols-3 gap-2 opacity-70 shrink-0"
+            className="hidden sm:grid grid-cols-3 gap-2 opacity-70 shrink-0"
           >
             {displayProducts.slice(0, 6).map((p, i) => (
               <div key={i} className="relative w-20 h-20 rounded-xl overflow-hidden border border-white/10">
@@ -947,7 +947,7 @@ export default function Homepage() {
       </section>
 
       {/* ─── SECTION 9: NEWSLETTER ──────────────────────────────────────── */}
-      <section ref={newsletterRef} className="relative isolate py-24 px-6 overflow-hidden">
+      <section ref={newsletterRef} className="relative isolate py-16 md:py-24 px-4 md:px-6 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image src="/1.jpg" alt="" fill className="object-cover object-center" />
           <div className="absolute inset-0 bg-[#060810]/50" />

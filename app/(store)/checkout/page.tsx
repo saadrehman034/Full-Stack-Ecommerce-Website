@@ -149,16 +149,16 @@ export default function CheckoutPage() {
           <ArrowLeft className="h-4 w-4" /> Back to Cart
         </Link>
 
-        <div className="grid gap-12 lg:grid-cols-3">
+        <div className="grid gap-8 lg:gap-12 lg:grid-cols-3">
           {/* Form */}
           <div className="lg:col-span-2">
             {/* Progress Steps */}
-            <div className="mb-10 flex items-center gap-0">
+            <div className="mb-8 md:mb-10 flex items-center gap-0">
               {STEPS.map((step, i) => (
                 <div key={step} className="flex items-center">
                   <button
                     onClick={() => i < currentStep && setCurrentStep(i)}
-                    className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition-all ${
+                    className={`flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full text-xs md:text-sm font-bold transition-all shrink-0 ${
                       i <= currentStep
                         ? "bg-[#C8F04B] text-black"
                         : "bg-white/[0.06] border border-white/[0.1] text-white/40"
@@ -166,11 +166,11 @@ export default function CheckoutPage() {
                   >
                     {i + 1}
                   </button>
-                  <span className={`ml-2 text-sm font-medium ${i === currentStep ? "text-white" : "text-white/40"}`}>
+                  <span className={`ml-1.5 text-xs md:text-sm font-medium hidden sm:inline ${i === currentStep ? "text-white" : "text-white/40"}`}>
                     {step}
                   </span>
                   {i < STEPS.length - 1 && (
-                    <div className={`mx-4 h-px w-12 ${i < currentStep ? "bg-[#C8F04B]" : "bg-white/[0.1]"}`} />
+                    <div className={`mx-2 md:mx-4 h-px w-6 md:w-12 ${i < currentStep ? "bg-[#C8F04B]" : "bg-white/[0.1]"}`} />
                   )}
                 </div>
               ))}
@@ -350,9 +350,9 @@ export default function CheckoutPage() {
 
           {/* Order Summary Sidebar */}
           <div className="space-y-4">
-            <div className="rounded-3xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] p-6 space-y-4 sticky top-24">
+            <div className="rounded-3xl bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] p-6 space-y-4 lg:sticky lg:top-24">
               <h2 className="font-syne text-lg font-bold text-white">Order Summary</h2>
-              <div className="space-y-3 max-h-[40vh] overflow-y-auto pr-1">
+              <div className="space-y-3 max-h-[50vh] lg:max-h-[40vh] overflow-y-auto pr-1">
                 {items.map((item) => (
                   <div key={item.product_id} className="flex gap-3">
                     <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-white/[0.08]">

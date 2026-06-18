@@ -51,7 +51,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.12, duration: 0.8, ease: EASE }}
-          className="font-syne text-5xl font-black leading-[0.92] tracking-tight text-white md:text-7xl lg:text-8xl"
+          className="font-syne text-4xl sm:text-5xl font-black leading-[0.92] tracking-tight text-white md:text-7xl lg:text-8xl"
         >
           The World&apos;s Finest
           <br />
@@ -106,7 +106,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.78, duration: 0.6 }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-8"
+          className="mt-6 flex flex-wrap items-center justify-center gap-4 md:gap-8"
         >
           {[
             { icon: "🚀", label: "Next Day Delivery" },

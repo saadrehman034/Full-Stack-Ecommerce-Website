@@ -75,11 +75,11 @@ export default function CartPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#060810]/20 via-transparent to-[#060810]/70" />
       </div>
       <div className="container mx-auto px-4 py-12 md:py-16">
-        <h1 className="mb-10 font-syne text-4xl font-black text-white md:text-5xl">
+        <h1 className="mb-6 md:mb-10 font-syne text-3xl md:text-4xl font-black text-white md:text-5xl">
           Your <span className="text-[#C8F04B]">Cart</span>
         </h1>
 
-        <div className="grid gap-10 lg:grid-cols-3">
+        <div className="grid gap-6 lg:gap-10 lg:grid-cols-3">
           {/* Items */}
           <div className="lg:col-span-2 space-y-4">
             <AnimatePresence>
