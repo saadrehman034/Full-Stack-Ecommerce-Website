@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ShoppingCart, Heart, Star, Check } from "lucide-react";
+import { ShoppingCart, Heart, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useCartStore } from "@/store/cart";
 import { toast } from "sonner";
@@ -137,12 +137,6 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
           <h3 className="font-syne text-[15px] font-semibold leading-snug text-foreground line-clamp-2 transition-colors group-hover:text-primary">
             {product.name}
           </h3>
-          <div className="flex items-center gap-1">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className={`h-3 w-3 ${i < 4 ? "fill-[#C8F04B] text-[#C8F04B]" : "text-muted-foreground/40"}`} />
-            ))}
-            <span className="ml-1 text-[11px] text-muted-foreground">(12)</span>
-          </div>
           <div className="flex items-center gap-2 pt-0.5">
             <span className="font-syne text-base font-bold text-foreground">${product.price.toFixed(2)}</span>
             {product.compare_price && (
