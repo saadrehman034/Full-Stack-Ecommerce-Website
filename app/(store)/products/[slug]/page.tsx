@@ -11,19 +11,21 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { createStaticClient } = await import("@/lib/supabase/server");
-  const supabase = createStaticClient();
-  const { data } = await supabase
-    .from("products")
-    .select("name, description")
-    .eq("slug", params.slug)
-    .single();
-
-  if (!data) return { title: "Product Not Found | Vinzlu" };
-  return {
-    title: `${data.name} | Vinzlu`,
-    description: data.description || `Buy ${data.name} at Vinzlu`,
-  };
+  try {
+    const supabase = createClient();
+    const { data } = await supabase
+      .from("products")
+      .select("name, description")
+      .eq("slug", params.slug)
+      .single();
+    if (!data) return { title: "Product | Vinzlu" };
+    return {
+      title: `${data.name} | Vinzlu`,
+      description: data.description || `Buy ${data.name} at Vinzlu`,
+    };
+  } catch {
+    return { title: "Product | Vinzlu" };
+  }
 }
 
 export default async function ProductPage({ params }: PageProps) {
@@ -31,12 +33,12 @@ export default async function ProductPage({ params }: PageProps) {
 
   const { data: product, error } = await supabase
     .from("products")
-    .select("*, categories(name, slug), product_variants(*), reviews(rating, body, created_at, reviewer_name, users(full_name))")
+    .select("*, categories(name, slug), product_variants(*), reviews(rating, body, created_at, users(full_name))")
     .eq("slug", params.slug)
     .eq("is_active", true)
     .single();
 
-  if (error || !product) notFound();
+  if (!product) notFound();
 
   const { data: related } = product.category_id
     ? await supabase
