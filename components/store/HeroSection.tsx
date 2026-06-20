@@ -24,12 +24,12 @@ export function HeroSection() {
 
       {/* Vinzlu.com — top right watermark */}
       <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, ease: EASE }}
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.7, ease: EASE }}
         className="absolute top-5 right-6 z-20 hidden sm:block"
       >
-        <span className="font-syne text-sm font-black tracking-widest uppercase bg-gradient-to-r from-[#C8F04B] to-[#a8e63b] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(200,240,75,0.5)]">
+        <span className="font-syne text-base font-black tracking-widest uppercase text-[#C8F04B] px-3 py-1 rounded-full border border-[#C8F04B]/40 bg-[#C8F04B]/10 backdrop-blur-sm shadow-[0_0_20px_rgba(200,240,75,0.3)]">
           Vinzlu.com
         </span>
       </motion.div>
