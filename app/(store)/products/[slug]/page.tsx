@@ -26,10 +26,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     .eq("slug", params.slug)
     .single();
 
-  if (!data) return { title: "Product Not Found | PantryLegend" };
+  if (!data) return { title: "Product Not Found | Vinzlu" };
   return {
-    title: `${data.name} | PantryLegend`,
-    description: data.description || `Buy ${data.name} at PantryLegend`,
+    title: `${data.name} | Vinzlu`,
+    description: data.description || `Buy ${data.name} at Vinzlu`,
   };
 }
 

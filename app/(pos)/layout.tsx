@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "PantryLegend POS",
+  title: "Vinzlu POS",
 };
 
 export default async function POSLayout({ children }: { children: React.ReactNode }) {

@@ -7,72 +7,104 @@ import * as z from "zod";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, CreditCard, Loader2, Lock } from "lucide-react";
+import { ArrowLeft, CreditCard, Loader2, Lock, ShieldCheck } from "lucide-react";
 import { useCartStore } from "@/store/cart";
 import { formatCurrency } from "@/lib/utils";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 
-const checkoutSchema = z.object({
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "");
+
+const stripeAppearance = {
+  theme: "night" as const,
+  variables: {
+    colorPrimary: "#C8F04B",
+    colorBackground: "#1a1a1a",
+    colorText: "#ffffff",
+    colorDanger: "#f87171",
+    fontFamily: "Inter, system-ui, sans-serif",
+    borderRadius: "12px",
+    spacingUnit: "4px",
+  },
+  rules: {
+    ".Input": {
+      border: "1px solid rgba(255,255,255,0.1)",
+      backgroundColor: "rgba(255,255,255,0.06)",
+      color: "#ffffff",
+    },
+    ".Input:focus": {
+      border: "1px solid #C8F04B",
+      boxShadow: "none",
+    },
+    ".Label": { color: "rgba(255,255,255,0.7)", fontSize: "13px" },
+  },
+};
+
+const shippingSchema = z.object({
   full_name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email required").optional().or(z.literal("")),
   phone: z.string().min(7, "Phone number is required"),
   line1: z.string().min(3, "Address is required"),
   line2: z.string().optional(),
   city: z.string().min(2, "City is required"),
-  state: z.string().min(2, "State/County is required"),
-  postal_code: z.string().min(3, "Postal code is required"),
+  state: z.string().min(2, "State is required"),
+  postal_code: z.string().min(3, "ZIP code is required"),
   country: z.string().min(2, "Country is required"),
   notes: z.string().optional(),
-  payment_method: z.literal("card"),
 });
 
-type CheckoutFormValues = z.infer<typeof checkoutSchema>;
+type ShippingValues = z.infer<typeof shippingSchema>;
 
-const STEPS = ["Shipping", "Payment", "Review"];
-
-// Shared dark input class
 const inputClass =
   "h-11 w-full rounded-xl border border-white/[0.1] bg-white/[0.06] px-4 text-sm text-white placeholder:text-white/30 outline-none focus:border-[#C8F04B] transition-colors";
 
-export default function CheckoutPage() {
-  const [currentStep, setCurrentStep] = useState(0);
+// ─── Inner payment form (must be inside <Elements>) ──────────────────────────
+function CardPaymentForm({
+  formData,
+  total,
+  subtotal,
+  discount,
+  shipping,
+  onBack,
+}: {
+  formData: ShippingValues;
+  total: number;
+  subtotal: number;
+  discount: number;
+  shipping: number;
+  onBack: () => void;
+}) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const { items, clearCart } = useCartStore();
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-  const { items, getSubtotal, getDiscount, getTotal, clearCart } = useCartStore();
+  const [paymentReady, setPaymentReady] = useState(false);
 
-  const subtotal = getSubtotal();
-  const discount = getDiscount();
-  const shipping = subtotal >= 50 ? 0 : 4.99;
-  const total = getTotal() + shipping;
-
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<CheckoutFormValues>({
-    resolver: zodResolver(checkoutSchema),
-    mode: "onSubmit",
-    reValidateMode: "onSubmit",
-    defaultValues: { payment_method: "card", country: "United States" },
-  });
-
-
-  const onSubmit = async (data: CheckoutFormValues) => {
-    if (items.length === 0) { toast.error("Your cart is empty."); return; }
+  const handlePay = async () => {
+    if (!stripe || !elements) return;
     setIsLoading(true);
 
     try {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
 
-      const orderNumber = `PL-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+      const orderNumber = `PL-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
       const shippingAddress = {
-        full_name: data.full_name,
-        phone: data.phone,
-        line1: data.line1,
-        line2: data.line2,
-        city: data.city,
-        state: data.state,
-        postal_code: data.postal_code,
-        country: data.country,
+        full_name: formData.full_name,
+        phone: formData.phone,
+        line1: formData.line1,
+        line2: formData.line2,
+        city: formData.city,
+        state: formData.state,
+        postal_code: formData.postal_code,
+        country: formData.country,
       };
 
       const { data: order, error: orderError } = await supabase
@@ -85,11 +117,11 @@ export default function CheckoutPage() {
           tax_amount: 0,
           shipping_amount: shipping,
           total_amount: total,
-          payment_method: data.payment_method,
-          payment_status: data.payment_method === "cash" ? "unpaid" : "unpaid",
+          payment_method: "card",
+          payment_status: "pending",
           shipping_address: shippingAddress,
           billing_address: shippingAddress,
-          notes: data.notes,
+          notes: formData.notes,
           status: "pending",
           source: "online",
         })
@@ -98,37 +130,141 @@ export default function CheckoutPage() {
 
       if (orderError || !order) throw new Error("Failed to create order");
 
-      // Insert order items
-      const orderItems = items.map((item) => ({
-        order_id: order.id,
-        product_id: item.product_id,
-        quantity: item.quantity,
-        unit_price: item.price,
-        total_price: item.price * item.quantity,
-        product_snapshot: { name: item.name, images: [item.image] },
-      }));
+      await supabase.from("order_items").insert(
+        items.map((item) => ({
+          order_id: (order as any).id,
+          product_id: item.product_id,
+          quantity: item.quantity,
+          unit_price: item.price,
+          total_price: item.price * item.quantity,
+          product_snapshot: { name: item.name, images: [item.image] },
+        }))
+      );
 
-      const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
-      if (itemsError) throw new Error("Failed to save order items");
+      const { error: stripeError } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/order-confirmation/${(order as any).id}`,
+          payment_method_data: {
+            billing_details: {
+              name: formData.full_name,
+              phone: formData.phone,
+              email: formData.email || undefined,
+              address: {
+                line1: formData.line1,
+                line2: formData.line2 || undefined,
+                city: formData.city,
+                state: formData.state,
+                postal_code: formData.postal_code,
+                country: "US",
+              },
+            },
+          },
+        },
+      });
 
-      // If paying by card, redirect to Stripe
-      if (data.payment_method === "card") {
-        const res = await fetch("/api/checkout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ orderId: order.id, items, total, orderNumber }),
-        });
-        const { url, error } = await res.json();
-        if (error) throw new Error(error);
-        if (url) { clearCart(); window.location.href = url; return; }
+      if (stripeError) {
+        // Roll back the order if payment fails
+        await supabase.from("orders").delete().eq("id", (order as any).id);
+        throw new Error(stripeError.message || "Payment failed");
       }
 
       clearCart();
-      router.push(`/order-confirmation/${order.id}`);
-    } catch (error: any) {
-      toast.error(error.message || "Something went wrong. Please try again.");
-    } finally {
+    } catch (err: any) {
+      toast.error(err.message || "Payment failed. Please try again.");
       setIsLoading(false);
+    }
+  };
+
+  return (
+    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
+      <h2 className="font-syne text-2xl font-black text-white">Payment Details</h2>
+
+      {/* Stripe PaymentElement */}
+      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+        <PaymentElement
+          onReady={() => setPaymentReady(true)}
+          options={{
+            layout: "tabs",
+            fields: { billingDetails: "never" },
+          }}
+        />
+      </div>
+
+      {/* Security badge */}
+      <div className="flex items-center gap-2 rounded-xl bg-white/[0.04] border border-white/[0.08] p-3 text-xs text-white/50">
+        <ShieldCheck className="h-4 w-4 shrink-0 text-[#C8F04B]" />
+        Your card details are encrypted and processed securely by Stripe. We never store your card information.
+      </div>
+
+      {/* Actions */}
+      <div className="flex gap-3 pt-1">
+        <button
+          type="button"
+          onClick={onBack}
+          disabled={isLoading}
+          className="h-12 flex-1 rounded-2xl bg-white/[0.07] border border-white/[0.12] font-medium text-white transition-colors hover:bg-white/[0.12] disabled:opacity-50"
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          onClick={handlePay}
+          disabled={!stripe || !paymentReady || isLoading}
+          className="flex h-12 flex-[2] items-center justify-center gap-2 rounded-2xl bg-[#C8F04B] font-syne font-bold text-black transition-all hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_30px_rgba(200,240,75,0.25)]"
+        >
+          {isLoading ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <>
+              <Lock className="h-4 w-4" />
+              Pay {formatCurrency(total)}
+            </>
+          )}
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Main checkout page ───────────────────────────────────────────────────────
+const STEPS = ["Shipping", "Payment"];
+
+export default function CheckoutPage() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [clientSecret, setClientSecret] = useState("");
+  const [isCreatingIntent, setIsCreatingIntent] = useState(false);
+  const [shippingData, setShippingData] = useState<ShippingValues | null>(null);
+  const { items, getSubtotal, getDiscount, getTotal } = useCartStore();
+
+  const subtotal = getSubtotal();
+  const discount = getDiscount();
+  const shipping = subtotal >= 50 ? 0 : 4.99;
+  const total = getTotal() + shipping;
+
+  const { register, handleSubmit, formState: { errors } } = useForm<ShippingValues>({
+    resolver: zodResolver(shippingSchema),
+    mode: "onSubmit",
+    defaultValues: { country: "United States" },
+  });
+
+  const handleContinueToPayment = async (data: ShippingValues) => {
+    setShippingData(data);
+    setIsCreatingIntent(true);
+    try {
+      const res = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: Math.round(total * 100) }),
+      });
+      const json = await res.json();
+      if (json.error) throw new Error(json.error);
+      setClientSecret(json.clientSecret);
+      setCurrentStep(1);
+    } catch (err: any) {
+      toast.error(err.message || "Could not initialise payment. Try again.");
+    } finally {
+      setIsCreatingIntent(false);
     }
   };
 
@@ -136,13 +272,12 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-[#060810] relative">
       {/* Cinematic background */}
       <div className="fixed inset-0 -z-10">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920&auto=format&fit=crop')" }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920&auto=format&fit=crop')" }} />
         <div className="absolute inset-0 bg-[#060810]/84" />
         <div className="absolute inset-0 bg-gradient-to-br from-[#060810]/40 via-transparent to-[#060810]/60" />
       </div>
+
       <div className="container mx-auto px-4 py-12 md:py-16">
         <Link href="/cart" className="mb-8 inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
           <ArrowLeft className="h-4 w-4" /> Back to Cart
@@ -151,20 +286,15 @@ export default function CheckoutPage() {
         <div className="grid gap-8 lg:gap-12 lg:grid-cols-3">
           {/* Form */}
           <div className="lg:col-span-2">
-            {/* Progress Steps */}
-            <div className="mb-8 md:mb-10 flex items-center gap-0">
+            {/* Step indicators */}
+            <div className="mb-8 flex items-center gap-0">
               {STEPS.map((step, i) => (
                 <div key={step} className="flex items-center">
-                  <button
-                    onClick={() => i < currentStep && setCurrentStep(i)}
-                    className={`flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full text-xs md:text-sm font-bold transition-all shrink-0 ${
-                      i <= currentStep
-                        ? "bg-[#C8F04B] text-black"
-                        : "bg-white/[0.06] border border-white/[0.1] text-white/40"
-                    } ${i < currentStep ? "cursor-pointer" : "cursor-default"}`}
-                  >
+                  <div className={`flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full text-xs md:text-sm font-bold shrink-0 ${
+                    i <= currentStep ? "bg-[#C8F04B] text-black" : "bg-white/[0.06] border border-white/[0.1] text-white/40"
+                  }`}>
                     {i + 1}
-                  </button>
+                  </div>
                   <span className={`ml-1.5 text-xs md:text-sm font-medium hidden sm:inline ${i === currentStep ? "text-white" : "text-white/40"}`}>
                     {step}
                   </span>
@@ -175,12 +305,12 @@ export default function CheckoutPage() {
               ))}
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Step 0: Shipping */}
-              {currentStep === 0 && (
-                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-5">
-                  <h2 className="font-syne text-2xl font-black text-white">Shipping Information</h2>
+            {/* Step 0: Shipping */}
+            {currentStep === 0 && (
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-5">
+                <h2 className="font-syne text-2xl font-black text-white">Shipping Information</h2>
 
+                <form onSubmit={handleSubmit(handleContinueToPayment)} className="space-y-5">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-1.5">
                       <label className="text-sm font-medium text-white/70">Full Name *</label>
@@ -202,13 +332,13 @@ export default function CheckoutPage() {
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-white/70">Address Line 1 *</label>
-                    <input {...register("line1")} placeholder="123 High Street" className={inputClass} />
+                    <input {...register("line1")} placeholder="123 Main Street" className={inputClass} />
                     {errors.line1 && <p className="text-xs text-red-400">{errors.line1.message}</p>}
                   </div>
 
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-white/70">Address Line 2</label>
-                    <input {...register("line2")} placeholder="Apartment, flat, etc." className={inputClass} />
+                    <input {...register("line2")} placeholder="Apartment, suite, etc." className={inputClass} />
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-3">
@@ -234,36 +364,6 @@ export default function CheckoutPage() {
                     <input {...register("country")} placeholder="United States" className={inputClass} />
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => setCurrentStep(1)}
-                    className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#C8F04B] font-bold text-black transition-all hover:scale-[1.01] shadow-[0_0_30px_rgba(200,240,75,0.20)]"
-                  >
-                    Continue to Payment
-                  </button>
-                </motion.div>
-              )}
-
-              {/* Step 1: Payment */}
-              {currentStep === 1 && (
-                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-5">
-                  <h2 className="font-syne text-2xl font-black text-white">Payment</h2>
-
-                  <div className="flex items-center gap-3 rounded-2xl border-2 border-[#C8F04B] bg-[#C8F04B]/10 p-4">
-                    <CreditCard className="h-5 w-5 shrink-0 text-[#C8F04B]" />
-                    <div>
-                      <p className="font-semibold text-sm text-white/90">Credit / Debit Card</p>
-                      <p className="text-xs text-white/40 mt-0.5">Powered by Stripe — secure checkout</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 rounded-xl bg-white/[0.04] border border-white/[0.08] p-3 text-sm text-white/50">
-                    <Lock className="h-4 w-4 shrink-0 text-[#C8F04B]" />
-                    You&apos;ll be redirected to Stripe&apos;s secure payment page.
-                  </div>
-
-                  <input type="hidden" {...register("payment_method")} value="card" />
-
                   <div className="space-y-1.5">
                     <label className="text-sm font-medium text-white/70">Order Notes (optional)</label>
                     <textarea
@@ -274,59 +374,37 @@ export default function CheckoutPage() {
                     />
                   </div>
 
-                  <div className="flex gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setCurrentStep(0)}
-                      className="h-12 flex-1 rounded-2xl bg-white/[0.07] border border-white/[0.12] font-medium text-white transition-colors hover:bg-white/[0.12]"
-                    >
-                      Back
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setCurrentStep(2)}
-                      className="h-12 flex-1 rounded-2xl bg-[#C8F04B] font-bold text-black transition-all hover:scale-[1.01]"
-                    >
-                      Review Order
-                    </button>
-                  </div>
-                </motion.div>
-              )}
+                  <button
+                    type="submit"
+                    disabled={isCreatingIntent}
+                    className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#C8F04B] font-syne font-bold text-black transition-all hover:scale-[1.01] disabled:opacity-60 shadow-[0_0_30px_rgba(200,240,75,0.20)]"
+                  >
+                    {isCreatingIntent ? (
+                      <><Loader2 className="h-4 w-4 animate-spin" /> Setting up payment…</>
+                    ) : (
+                      <><CreditCard className="h-4 w-4" /> Continue to Payment</>
+                    )}
+                  </button>
+                </form>
+              </motion.div>
+            )}
 
-              {/* Step 2: Review */}
-              {currentStep === 2 && (
-                <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-5">
-                  <h2 className="font-syne text-2xl font-black text-white">Review &amp; Place Order</h2>
-
-                  <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-4 space-y-3">
-                    <h3 className="font-semibold text-sm text-white/70">Order Items</h3>
-                    {items.map((item) => (
-                      <div key={item.product_id} className="flex items-center justify-between text-sm">
-                        <span className="text-white/50">{item.name} × {item.quantity}</span>
-                        <span className="font-medium text-white/90">{formatCurrency(item.price * item.quantity)}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setCurrentStep(1)}
-                      className="h-12 flex-1 rounded-2xl bg-white/[0.07] border border-white/[0.12] font-medium text-white transition-colors hover:bg-white/[0.12]"
-                    >
-                      Back
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isLoading}
-                      className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-[#C8F04B] font-syne font-bold text-black transition-all hover:scale-[1.01] disabled:opacity-70 shadow-[0_0_30px_rgba(200,240,75,0.20)]"
-                    >
-                      {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Pay Now"}
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </form>
+            {/* Step 1: Embedded card payment */}
+            {currentStep === 1 && clientSecret && shippingData && (
+              <Elements
+                stripe={stripePromise}
+                options={{ clientSecret, appearance: stripeAppearance }}
+              >
+                <CardPaymentForm
+                  formData={shippingData}
+                  total={total}
+                  subtotal={subtotal}
+                  discount={discount}
+                  shipping={shipping}
+                  onBack={() => setCurrentStep(0)}
+                />
+              </Elements>
+            )}
           </div>
 
           {/* Order Summary Sidebar */}
@@ -372,6 +450,12 @@ export default function CheckoutPage() {
                   <span className="text-white">Total</span>
                   <span className="text-[#C8F04B]">{formatCurrency(total)}</span>
                 </div>
+              </div>
+
+              {/* Stripe badge */}
+              <div className="flex items-center justify-center gap-2 pt-1">
+                <Lock className="h-3 w-3 text-white/30" />
+                <span className="text-[11px] text-white/30">Secured by Stripe</span>
               </div>
             </div>
           </div>

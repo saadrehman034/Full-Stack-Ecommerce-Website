@@ -82,14 +82,14 @@ export function HeroSection() {
             href="/shop?sort=newest"
             className="group inline-flex items-center gap-2 rounded-2xl bg-[#C8F04B] px-8 py-4 font-bold text-black shadow-[0_0_50px_rgba(200,240,75,0.3)] transition-all hover:scale-105 active:scale-95"
           >
-            Shop Collection
+            Shop Now
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
-            href="/shop"
+            href="/shop?view=collections"
             className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/[0.07] px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/[0.12]"
           >
-            Browse All
+            Explore Collections
           </Link>
         </motion.div>
 

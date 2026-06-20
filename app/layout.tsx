@@ -20,7 +20,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "PantryLegend | Premium Online Pantry",
+  title: "Vinzlu | Premium Online Pantry",
   description: "Arrogantly beautiful ecommerce pantry shop platform.",
 };
 

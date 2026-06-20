@@ -16,7 +16,7 @@ export default async function SettingsPage() {
     <div className="p-8">
       <div className="mb-6">
         <h1 className="font-syne text-3xl font-bold text-white">Store Settings</h1>
-        <p className="text-[#A0A0A0] text-sm mt-1">Configure your PantryLegend store</p>
+        <p className="text-[#A0A0A0] text-sm mt-1">Configure your Vinzlu store</p>
       </div>
       <SettingsTabs initialSettings={settingsMap} />
     </div>

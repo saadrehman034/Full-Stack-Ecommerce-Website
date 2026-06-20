@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -70,7 +70,7 @@ export default function ResetPasswordPage() {
         {mode === "request" && !sent && (
           <>
             <div className="text-center">
-              <Link href="/"><span className="font-syne text-2xl font-bold text-primary">PantryLegend.</span></Link>
+              <Link href="/"><span className="font-syne text-2xl font-bold text-primary">Vinzlu.</span></Link>
               <h2 className="mt-6 font-syne text-3xl font-bold">Reset password</h2>
               <p className="mt-2 text-sm text-muted-foreground">Enter your email and we'll send a reset link.</p>
             </div>
@@ -110,7 +110,7 @@ export default function ResetPasswordPage() {
         {mode === "update" && (
           <>
             <div className="text-center">
-              <Link href="/"><span className="font-syne text-2xl font-bold text-primary">PantryLegend.</span></Link>
+              <Link href="/"><span className="font-syne text-2xl font-bold text-primary">Vinzlu.</span></Link>
               <h2 className="mt-6 font-syne text-3xl font-bold">Set new password</h2>
               <p className="mt-2 text-sm text-muted-foreground">Choose a strong password for your account.</p>
             </div>

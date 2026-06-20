@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShoppingCart, Search, Menu, X, User, LogOut, Package, ChevronDown, LayoutDashboard, Monitor } from "lucide-react";
 import { useCartStore } from "@/store/cart";
@@ -88,8 +89,7 @@ export function Navbar() {
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>
             <Link href="/" className="flex shrink-0 items-center">
-              <span className="font-syne text-xl font-black tracking-tight text-white">Pantry</span>
-              <span className="font-syne text-xl font-black tracking-tight text-[#C8F04B]">Legend.</span>
+              <Image src="/logo.png" alt="Vinzlu" width={100} height={40} className="object-contain h-10 w-auto" priority />
             </Link>
           </motion.div>
 

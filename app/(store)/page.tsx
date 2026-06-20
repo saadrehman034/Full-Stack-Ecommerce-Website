@@ -76,7 +76,7 @@ const FALLBACK_PRODUCTS: Product[] = [
 const FALLBACK_REVIEWS: Review[] = [
   { id: "1", body: "The quality of their spices is absolutely incredible. The Himalayan pink salt has become a staple in my kitchen — nothing else comes close.", users: { full_name: "Sarah M." }, rating: 5 },
   { id: "2", body: "Fast delivery and everything was packed so well. The ceremonial matcha is divine — better than anything I've had at a café.", users: { full_name: "James K." }, rating: 5 },
-  { id: "3", body: "PantryLegend has completely transformed how I cook. The variety and quality is unmatched. Highly recommend to anyone who takes food seriously.", users: { full_name: "Priya R." }, rating: 5 },
+  { id: "3", body: "Vinzlu has completely transformed how I cook. The variety and quality is unmatched. Highly recommend to anyone who takes food seriously.", users: { full_name: "Priya R." }, rating: 5 },
 ]
 
 const BENEFITS = [
@@ -540,7 +540,7 @@ export default function Homepage() {
               {/* Logo: leaf */}
               <span className="inline-flex items-center mx-6 gap-1.5">
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-                <span className="font-black text-xs tracking-widest text-black uppercase">PantryLegend</span>
+                <span className="font-black text-xs tracking-widest text-black uppercase">Vinzlu</span>
               </span>
               <span className="text-black/30 mx-2">◆</span>
               <span className="inline-block mx-6 text-black font-bold text-sm tracking-wide">Free Delivery Over $50</span>

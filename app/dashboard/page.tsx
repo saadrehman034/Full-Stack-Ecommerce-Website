@@ -455,7 +455,7 @@ export default async function DashboardPage() {
           Dashboard
         </h1>
         <p className="text-white/40 text-sm mt-1">
-          Welcome back — here&apos;s what&apos;s happening with PantryLegend today.
+          Welcome back — here&apos;s what&apos;s happening with Vinzlu today.
         </p>
       </div>
 

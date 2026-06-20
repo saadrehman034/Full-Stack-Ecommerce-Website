@@ -7,8 +7,8 @@ import { toast } from "sonner";
 export default function AdminSettingsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [settings, setSettings] = useState({
-    storeName: "PantryLegend",
-    contactEmail: "hello@pantrylegende.com",
+    storeName: "Vinzlu",
+    contactEmail: "hello@vinzlu.com",
     taxRate: "10",
     freeShippingThreshold: "50",
     flatShippingRate: "4.99",

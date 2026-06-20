@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const supabase = createClient();
   const { data: cat } = await supabase.from("categories").select("name, description").eq("slug", params.category).single();
   return {
-    title: cat ? `${cat.name} | PantryLegend` : "Shop | PantryLegend",
+    title: cat ? `${cat.name} | Vinzlu` : "Shop | Vinzlu",
     description: cat?.description || "Premium pantry products.",
   };
 }

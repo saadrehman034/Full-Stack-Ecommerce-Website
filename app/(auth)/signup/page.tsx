@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -88,7 +88,7 @@ export default function SignupPage() {
         className="w-full max-w-md space-y-8 rounded-3xl bg-card p-10 shadow-xl">
         <div className="text-center">
           <Link href="/">
-            <span className="font-syne text-2xl font-bold tracking-tight text-primary">PantryLegend.</span>
+            <span className="font-syne text-2xl font-bold tracking-tight text-primary">Vinzlu.</span>
           </Link>
           <h2 className="mt-6 text-3xl font-bold tracking-tight text-foreground">Create your account</h2>
           <p className="mt-2 text-sm text-muted-foreground">

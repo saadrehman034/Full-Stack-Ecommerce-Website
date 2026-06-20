@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin, Clock, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 const INFO = [
-  { icon: Mail, label: "Email", value: "hello@pantrylegendd.com" },
+  { icon: Mail, label: "Email", value: "hello@vinzlu.com" },
   { icon: Phone, label: "Phone", value: "+44 (0) 20 1234 5678" },
   { icon: MapPin, label: "Address", value: "12 Artisan Quarter, London, EC1A 1BB" },
   { icon: Clock, label: "Hours", value: "Mon–Fri: 9am–6pm GMT" },

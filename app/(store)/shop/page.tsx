@@ -9,7 +9,7 @@ import { Package } from "lucide-react";
 
 export const revalidate = 60;
 
-export default async function ShopPage({ searchParams }: { searchParams: { category?: string; sort?: string; q?: string } }) {
+export default async function ShopPage({ searchParams }: { searchParams: { category?: string; sort?: string; q?: string; view?: string } }) {
   const supabase = createClient();
 
   const { data: categories } = await supabase
@@ -44,6 +44,7 @@ export default async function ShopPage({ searchParams }: { searchParams: { categ
   const allCategories = categories || [];
   const allProducts = products || [];
   const isFiltered = !!searchParams.category || !!searchParams.q;
+  const isCollectionsView = searchParams.view === "collections";
   const activeCategory = allCategories.find(c => c.slug === searchParams.category);
 
   return (
@@ -83,7 +84,7 @@ export default async function ShopPage({ searchParams }: { searchParams: { categ
           )}
         </div>
 
-        <CategoryPills categories={allCategories} activeCategory={searchParams.category} />
+        {!isCollectionsView && <CategoryPills categories={allCategories} activeCategory={searchParams.category} />}
         <ShopFiltersBar activeSort={searchParams.sort} />
 
         {allProducts.length === 0 ? (

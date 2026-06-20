@@ -78,7 +78,7 @@ export function SettingsTabs({ initialSettings }: Props) {
   // ---- Store Info ----
   const storeInit = (initialSettings.store_info as Record<string, string>) ?? {};
   const [storeInfo, setStoreInfo] = useState({
-    store_name: storeInit.store_name ?? "PantryLegend",
+    store_name: storeInit.store_name ?? "Vinzlu",
     tagline: storeInit.tagline ?? "",
     email: storeInit.email ?? "",
     phone: storeInit.phone ?? "",
@@ -246,7 +246,7 @@ export function SettingsTabs({ initialSettings }: Props) {
               className={inputCls}
               value={storeInfo.store_name}
               onChange={(e) => setStoreInfo((p) => ({ ...p, store_name: e.target.value }))}
-              placeholder="PantryLegend"
+              placeholder="Vinzlu"
             />
           </Field>
           <Field label="Tagline">
@@ -263,7 +263,7 @@ export function SettingsTabs({ initialSettings }: Props) {
               className={inputCls}
               value={storeInfo.email}
               onChange={(e) => setStoreInfo((p) => ({ ...p, email: e.target.value }))}
-              placeholder="hello@pantrylegend.com"
+              placeholder="hello@vinzlu.com"
             />
           </Field>
           <Field label="Phone">

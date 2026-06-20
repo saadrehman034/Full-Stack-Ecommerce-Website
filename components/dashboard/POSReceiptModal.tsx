@@ -65,9 +65,8 @@ export function POSReceiptModal({ order, onClose }: POSReceiptModalProps) {
             <div className="bg-[#0D0D0D] rounded-2xl p-5 space-y-4 text-sm print:bg-white print:text-black">
               {/* Store header */}
               <div className="text-center border-b border-[#1A1A1A] pb-4 print:border-black/20">
-                <p className="font-syne text-xl font-black text-[#C8F04B] print:text-black">
-                  PantryLegend.
-                </p>
+                <img src="/logo.png" alt="Vinzlu" className="h-10 w-auto object-contain mx-auto print:hidden" />
+                <p className="hidden print:block font-bold text-xl">Vinzlu</p>
                 <p className="text-[#555] text-xs mt-0.5 print:text-gray-600">
                   Your pantry, delivered.
                 </p>
@@ -152,7 +151,7 @@ export function POSReceiptModal({ order, onClose }: POSReceiptModalProps) {
 
               {/* Footer */}
               <div className="text-center text-[#555] text-[10px] border-t border-[#1A1A1A] pt-3 print:border-black/20">
-                Thank you for shopping with PantryLegend!
+                Thank you for shopping with Vinzlu!
               </div>
             </div>
 

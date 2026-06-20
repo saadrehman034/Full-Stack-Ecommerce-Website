@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Leaf, BadgeCheck, Truck, Heart } from "lucide-react";
 
-export const metadata = { title: "About Us | PantryLegend", description: "Our story, mission and values." };
+export const metadata = { title: "About Us | Vinzlu", description: "Our story, mission and values." };
 
 const VALUES = [
   { icon: Leaf, title: "Sustainably Sourced", body: "Every product is traced to its origin. We work directly with small farms, co-operatives and artisan producers who share our commitment to regenerative agriculture." },
@@ -24,7 +24,7 @@ export default function AboutPage() {
             Built for the<br /><span className="text-[#C8F04B]">curious cook.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-white/70">
-            PantryLegend was born from a simple belief: the best meals start with the best ingredients. We curate the world's finest pantry staples so you don't have to.
+            Vinzlu was born from a simple belief: the best meals start with the best ingredients. We curate the world's finest pantry staples so you don't have to.
           </p>
         </div>
       </section>
@@ -38,7 +38,7 @@ export default function AboutPage() {
               It started with a saffron thread from Iran, a bottle of Cretan olive oil, and the realisation that the gap between what you can buy at a supermarket and what professional chefs have access to is vast — and completely unnecessary.
             </p>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-              We built PantryLegend to close that gap. Working directly with producers across 40+ countries, we bring you ingredients that were previously only available to restaurants and food professionals.
+              We built Vinzlu to close that gap. Working directly with producers across 40+ countries, we bring you ingredients that were previously only available to restaurants and food professionals.
             </p>
             <Link href="/shop" className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-primary px-8 font-semibold text-primary-foreground transition-transform hover:scale-105">
               Explore the Shop
@@ -72,7 +72,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="container mx-auto max-w-3xl px-4 py-24 text-center">
         <h2 className="font-syne text-4xl font-bold">Ready to upgrade your pantry?</h2>
-        <p className="mt-4 text-muted-foreground">Join thousands of home cooks and professional chefs who trust PantryLegend.</p>
+        <p className="mt-4 text-muted-foreground">Join thousands of home cooks and professional chefs who trust Vinzlu.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link href="/shop" className="h-12 inline-flex items-center gap-2 rounded-full bg-primary px-8 font-semibold text-primary-foreground hover:scale-105 transition-transform">
             Shop Now

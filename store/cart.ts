@@ -89,7 +89,7 @@ export const useCartStore = create<CartStore>()(
       getTotal: () => get().getSubtotal() - get().getDiscount(),
     }),
     {
-      name: 'pantry-legend-cart',
+      name: 'vinzlu-cart',
       partialize: (state) => ({ items: state.items, coupon: state.coupon }),
     }
   )

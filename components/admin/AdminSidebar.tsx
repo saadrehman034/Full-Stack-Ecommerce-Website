@@ -34,8 +34,8 @@ export function AdminSidebar({ email, role }: Props) {
   const SidebarContent = () => (
     <>
       <div className="flex h-16 items-center border-b border-border/40 px-6">
-        <Link href="/admin" onClick={() => setOpen(false)} className="font-syne text-lg font-bold text-primary">
-          PantryLegend
+        <Link href="/admin" onClick={() => setOpen(false)} className="inline-flex items-center">
+          <img src="/logo.png" alt="Vinzlu" className="h-8 w-auto object-contain" />
         </Link>
         <span className="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase text-primary">Admin</span>
         <button onClick={() => setOpen(false)} className="ml-auto md:hidden text-muted-foreground hover:text-foreground">

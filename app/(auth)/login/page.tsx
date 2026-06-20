@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -60,7 +60,7 @@ export default function LoginPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
         className="w-full max-w-md space-y-8 rounded-3xl bg-card p-10 shadow-xl ring-1 ring-border/30">
         <div className="text-center">
-          <Link href="/"><span className="font-syne text-2xl font-bold text-primary">PantryLegend.</span></Link>
+          <Link href="/"><span className="font-syne text-2xl font-bold text-primary">Vinzlu.</span></Link>
           <h2 className="mt-6 font-syne text-3xl font-bold">Welcome back</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Don't have an account?{" "}

@@ -43,7 +43,7 @@ export const usePOSStore = create<POSState>()(
       }))
     }),
     {
-      name: 'pantrylegend-pos',
+      name: 'vinzlu-pos',
     }
   )
 )

@@ -42,7 +42,7 @@ serve(async (req) => {
         <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
           <!-- Header -->
           <div style="background:#0D3B2E;padding:32px;text-align:center;">
-            <h1 style="color:#C8F04B;font-size:28px;font-weight:800;margin:0;">PantryLegend.</h1>
+            <h1 style="color:#C8F04B;font-size:28px;font-weight:800;margin:0;">Vinzlu.</h1>
             <p style="color:rgba(255,255,255,0.7);margin:8px 0 0;">Premium Pantry Delivered</p>
           </div>
 
@@ -93,7 +93,7 @@ serve(async (req) => {
 
           <!-- Footer -->
           <div style="background:#f9f9f9;padding:24px;text-align:center;border-top:1px solid #f0f0f0;">
-            <p style="color:#999;font-size:12px;margin:0;">© ${new Date().getFullYear()} PantryLegend. All rights reserved.</p>
+            <p style="color:#999;font-size:12px;margin:0;">© ${new Date().getFullYear()} Vinzlu. All rights reserved.</p>
           </div>
         </div>
       </body>
@@ -107,7 +107,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "PantryLegend <orders@pantrylegende.com>",
+        from: "Vinzlu <orders@vinzlu.com>",
         to: [customerEmail],
         subject: `Order Confirmed — ${order.order_number}`,
         html,

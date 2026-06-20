@@ -15,8 +15,8 @@ const QUICK_LINKS = [
 ];
 
 const CONTACT_ITEMS = [
-  { label: "hello@pantrylegend.com", href: "mailto:hello@pantrylegend.com" },
-  { label: "+44 20 7946 0958", href: "tel:+442079460958" },
+  { label: "info@vinzlu.com", href: "mailto:info@vinzlu.com" },
+  { label: "+1 (214) 724-4573", href: "tel:+12147244573" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy Policy", href: "/privacy" },
@@ -96,7 +96,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-5">
             <Link href="/" className="inline-flex items-center">
-              <span className="font-syne text-2xl font-black text-[#C8F04B]">PantryLegend.</span>
+              <img src="/logo.png" alt="Vinzlu" className="h-14 w-auto object-contain" />
             </Link>
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
               Premium pantry essentials, globally sourced. Curated from artisan producers across 40+ countries to elevate every meal.
@@ -179,7 +179,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
           <p className="text-xs text-white/25">
-            &copy; {new Date().getFullYear()} PantryLegend Ltd. All rights reserved.
+            &copy; {new Date().getFullYear()} Vinzlu Ltd. All rights reserved.
           </p>
           <p className="text-xs text-white/25">
             Made with ❤️ for food lovers everywhere
