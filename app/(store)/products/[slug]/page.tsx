@@ -33,12 +33,23 @@ export default async function ProductPage({ params }: PageProps) {
 
   const { data: product, error } = await supabase
     .from("products")
-    .select("*, categories(name, slug), product_variants(*), reviews(rating, body, created_at, users(full_name))")
+    .select("*, categories(name, slug)")
     .eq("slug", params.slug)
     .eq("is_active", true)
     .single();
 
+  if (error) console.error("Product fetch error:", error.message, error.details);
   if (!product) notFound();
+
+  // Fetch reviews separately so a missing table doesn't break the page
+  const { data: reviews } = await supabase
+    .from("reviews")
+    .select("rating, body, created_at, users(full_name)")
+    .eq("product_id", product.id)
+    .order("created_at", { ascending: false })
+    .limit(20);
+
+  const productWithReviews = { ...product, reviews: reviews ?? [], product_variants: [] };
 
   const { data: related } = product.category_id
     ? await supabase
@@ -61,7 +72,7 @@ export default async function ProductPage({ params }: PageProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-[#060810]/30 via-transparent to-[#060810]/70" />
       </div>
 
-      <ProductDetailClient product={product as any} />
+      <ProductDetailClient product={productWithReviews as any} />
 
       {related && related.length > 0 && (
         <section className="container mx-auto px-4 py-20">
