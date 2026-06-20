@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ShoppingCart, Heart, Check } from "lucide-react";
+import { ShoppingCart, Heart, Check, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useCartStore } from "@/store/cart";
 import { toast } from "sonner";
@@ -22,12 +22,18 @@ interface Product {
   low_stock_threshold?: number;
   is_featured?: boolean;
   categories?: { name: string; slug: string } | null;
+  reviews?: { rating: number }[];
 }
 
 export function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   const { addItem } = useCartStore();
   const [addState, setAddState] = useState<"idle" | "added">("idle");
   const router = useRouter();
+
+  const reviewCount = product.reviews?.length ?? 0;
+  const avgRating = reviewCount > 0
+    ? product.reviews!.reduce((s, r) => s + r.rating, 0) / reviewCount
+    : 0;
 
   const discount = product.compare_price
     ? Math.round(((product.compare_price - product.price) / product.compare_price) * 100)
@@ -137,6 +143,14 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
           <h3 className="font-syne text-[15px] font-semibold leading-snug text-foreground line-clamp-2 transition-colors group-hover:text-primary">
             {product.name}
           </h3>
+          {reviewCount > 0 && (
+            <div className="flex items-center gap-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className={`h-3 w-3 ${i < Math.round(avgRating) ? "fill-[#C8F04B] text-[#C8F04B]" : "text-muted-foreground/40"}`} />
+              ))}
+              <span className="ml-0.5 text-[11px] text-muted-foreground">({reviewCount})</span>
+            </div>
+          )}
           <div className="flex items-center gap-2 pt-0.5">
             <span className="font-syne text-base font-bold text-foreground">${product.price.toFixed(2)}</span>
             {product.compare_price && (

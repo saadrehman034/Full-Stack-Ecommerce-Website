@@ -47,7 +47,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
 
   let query = supabase
     .from("products")
-    .select("*, categories(name, slug)")
+    .select("*, categories(name, slug), reviews(rating)")
     .eq("category_id", category.id)
     .eq("is_active", true);
 

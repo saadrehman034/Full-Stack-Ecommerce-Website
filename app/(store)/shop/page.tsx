@@ -36,7 +36,7 @@ export default async function ShopPage({
   let query = supabase
     .from("products")
     .select(
-      "id, name, slug, price, compare_price, images, stock_quantity, is_featured, is_active, category_id, unit, categories(name, slug)"
+      "id, name, slug, price, compare_price, images, stock_quantity, is_featured, is_active, category_id, unit, categories(name, slug), reviews(rating)"
     )
     .eq("is_active", true);
 
