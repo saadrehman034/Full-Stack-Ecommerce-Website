@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 interface Category { id: string; name: string; slug: string }
 
 const BASE_LINKS = [
+  { label: "Home", href: "/" },
   { label: "Shop All", href: "/shop" },
   { label: "Best Sellers", href: "/shop?sort=newest" },
 ];
