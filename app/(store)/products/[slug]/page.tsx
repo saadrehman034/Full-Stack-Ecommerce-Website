@@ -4,17 +4,10 @@ import { ProductDetailClient } from "@/components/store/ProductDetailClient";
 import { ProductCard } from "@/components/store/ProductCard";
 import type { Metadata } from "next";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: { slug: string };
-}
-
-export async function generateStaticParams() {
-  const { createStaticClient } = await import("@/lib/supabase/server");
-  const supabase = createStaticClient();
-  const { data } = await supabase.from("products").select("slug").eq("is_active", true);
-  return data?.map(p => ({ slug: p.slug })) ?? [];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

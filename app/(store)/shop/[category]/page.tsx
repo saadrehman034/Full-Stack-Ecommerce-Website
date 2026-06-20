@@ -1,4 +1,4 @@
-import { createClient, createStaticClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/store/ProductCard";
 import { CategoryPills } from "@/components/store/CategoryPills";
@@ -6,13 +6,7 @@ import { ShopFiltersBar } from "@/components/store/ShopFiltersBar";
 import Image from "next/image";
 import type { Metadata } from "next";
 
-export async function generateStaticParams() {
-  const supabase = createStaticClient();
-  const { data } = await supabase.from("categories").select("slug").eq("is_active", true);
-  return data?.map(c => ({ category: c.slug })) ?? [];
-}
-
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: { category: string };
