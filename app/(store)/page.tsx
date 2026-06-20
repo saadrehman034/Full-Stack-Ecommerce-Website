@@ -355,6 +355,18 @@ export default function Homepage() {
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }}
         />
 
+        {/* Vinzlu.com — top right watermark */}
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.7, ease: EASE }}
+          className="absolute top-6 right-6 z-20 hidden sm:block"
+        >
+          <span className="font-syne text-base font-black tracking-widest uppercase text-[#C8F04B] px-3 py-1.5 rounded-full border border-[#C8F04B]/40 bg-[#C8F04B]/10 backdrop-blur-sm shadow-[0_0_20px_rgba(200,240,75,0.3)]">
+            Vinzlu.com
+          </span>
+        </motion.div>
+
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center w-full">
           {/* Badge */}
