@@ -22,6 +22,18 @@ export function HeroSection() {
       {/* Lime tint at bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#C8F04B]/10 via-transparent to-transparent" />
 
+      {/* Vinzlu.com — top right watermark */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3, duration: 0.8, ease: EASE }}
+        className="absolute top-5 right-6 z-20 hidden sm:block"
+      >
+        <span className="font-syne text-sm font-black tracking-widest uppercase bg-gradient-to-r from-[#C8F04B] to-[#a8e63b] bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(200,240,75,0.5)]">
+          Vinzlu.com
+        </span>
+      </motion.div>
+
       {/* Glow orbs */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.18, 0.32, 0.18] }}
