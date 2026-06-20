@@ -7,7 +7,7 @@ export const metadata = { title: "About Us | Vinzlu", description: "Our story, m
 const VALUES = [
   { icon: Leaf, title: "Sustainably Sourced", body: "Every product is traced to its origin. We work directly with small farms, co-operatives and artisan producers who share our commitment to regenerative agriculture." },
   { icon: BadgeCheck, title: "Authenticity Guaranteed", body: "We taste, test and verify every product before it reaches your door. If it's not extraordinary, it doesn't make the cut. Full stop." },
-  { icon: Truck, title: "Next Day Delivery", body: "Order before 2pm and your order ships the same day. We pack fresh to order so your pantry essentials arrive at peak quality." },
+  { icon: Truck, title: "24/7 Delivery", body: "We ship around the clock, every day of the year. Order any time and your pantry essentials will be on their way — no cutoff times, no waiting." },
   { icon: Heart, title: "Community First", body: "10% of profits go directly to the farming communities we partner with — funding education, infrastructure and sustainable farming practices." },
 ];
 
@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-primary px-4 py-32 text-center">
+      <section className="relative overflow-hidden bg-[#14532d] px-4 py-32 text-center">
         <div className="pointer-events-none absolute inset-0 opacity-5"
           style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
         <div className="relative container mx-auto max-w-3xl">

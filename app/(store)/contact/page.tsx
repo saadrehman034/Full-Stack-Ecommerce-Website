@@ -6,10 +6,10 @@ import { Mail, Phone, MapPin, Clock, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 const INFO = [
-  { icon: Mail, label: "Email", value: "hello@vinzlu.com" },
-  { icon: Phone, label: "Phone", value: "+44 (0) 20 1234 5678" },
-  { icon: MapPin, label: "Address", value: "12 Artisan Quarter, London, EC1A 1BB" },
-  { icon: Clock, label: "Hours", value: "Mon–Fri: 9am–6pm GMT" },
+  { icon: Mail, label: "Email", value: "info@vinzlu.com" },
+  { icon: Phone, label: "Phone", value: "+1 (214) 724-4573" },
+  { icon: MapPin, label: "Address", value: "Dallas, Texas" },
+  { icon: Clock, label: "Hours", value: "24/7 — Always available" },
 ];
 
 export default function ContactPage() {
@@ -31,7 +31,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <section className="bg-primary px-4 py-20 text-center">
+      <section className="bg-[#14532d] px-4 py-20 text-center">
         <h1 className="font-syne text-5xl font-extrabold text-white">Get in touch</h1>
         <p className="mt-4 text-lg text-white/70">Questions, feedback, or bulk orders — we'd love to hear from you.</p>
       </section>

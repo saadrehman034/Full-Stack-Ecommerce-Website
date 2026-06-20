@@ -3,7 +3,7 @@ export const metadata = { title: "Terms & Conditions | Vinzlu" };
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-background">
-      <section className="bg-primary px-4 py-20 text-center">
+      <section className="bg-[#14532d] px-4 py-20 text-center">
         <h1 className="font-syne text-5xl font-extrabold text-white">Terms & Conditions</h1>
         <p className="mt-4 text-white/70">Last updated: {new Date().toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}</p>
       </section>
