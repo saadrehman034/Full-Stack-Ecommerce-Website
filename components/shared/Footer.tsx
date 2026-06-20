@@ -96,7 +96,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-5">
             <Link href="/" className="inline-flex items-center">
-              <img src="/logo.png" alt="Vinzlu" className="h-14 w-auto object-contain" />
+              <img src="/logo.png" alt="Vinzlu" className="h-24 w-auto object-contain" />
             </Link>
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
               Premium pantry essentials, globally sourced. Curated from artisan producers across 40+ countries to elevate every meal.

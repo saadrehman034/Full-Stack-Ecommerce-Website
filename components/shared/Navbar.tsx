@@ -89,7 +89,7 @@ export function Navbar() {
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 400, damping: 25 }}>
             <Link href="/" className="flex shrink-0 items-center">
-              <Image src="/logo.png" alt="Vinzlu" width={100} height={40} className="object-contain h-10 w-auto" priority />
+              <Image src="/logo.png" alt="Vinzlu" width={160} height={64} className="object-contain h-14 w-auto" priority />
             </Link>
           </motion.div>
 
