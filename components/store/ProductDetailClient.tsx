@@ -291,7 +291,7 @@ export function ProductDetailClient({ product }: { product: any }) {
                 </div>
                 {review.body && <p className="text-sm leading-relaxed text-white/70">{review.body}</p>}
                 <div className="flex items-center justify-between text-xs text-white/40">
-                  <span className="font-medium text-white/60">{review.users?.full_name || "Verified Buyer"}</span>
+                  <span className="font-medium text-white/60">{review.users?.full_name || (review as any).reviewer_name || "Verified Buyer"}</span>
                   <span>{new Date(review.created_at).toLocaleDateString("en-GB")}</span>
                 </div>
               </motion.div>
