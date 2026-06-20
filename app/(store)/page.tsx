@@ -408,10 +408,11 @@ export default function Homepage() {
               <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
             </Link>
             <Link
-              href="/shop?featured=true"
-              className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/[0.12] text-white font-semibold text-base px-8 py-4 rounded-2xl hover:bg-white/[0.12] transition-all backdrop-blur-sm"
+              href="/shop?view=collections"
+              className="group inline-flex items-center gap-2 text-white/70 hover:text-white font-semibold text-base transition-colors border-b-2 border-white/20 hover:border-[#C8F04B] pb-1"
             >
               Explore Collections
+              <svg className="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
           </motion.div>
 
